@@ -15,6 +15,7 @@ import LoginNav from "./loginnav/loginnav";
 import LoginGreet from "./logingreet/logingreet";
 import Footer from "./footer/footer";
 import ApiContext from './ApiContext';
+import EventDetails from './eventdetails/eventdetails'
 
 
 class App extends Component {
@@ -52,6 +53,7 @@ handleAddMember = (member) => {
       <Route path="/login" component={LoginNav} />
       <Route path="/addmember" component={AddMemberNav} />
       <Route path="/addevent" component={AddMemberNav} />
+      <Route path="/events/:eventId" component={AddMemberNav} />
 
       
       </>
@@ -67,6 +69,7 @@ handleAddMember = (member) => {
       <Route path="/signup" component={SignUpGreet} />
       <Route path="/login" component={LoginGreet} />
       <Route path="/addmember" component={AddMemberGreet} />
+      <Route path="events/:eventId" component ={EventDetails} />
       </>
     )
   }

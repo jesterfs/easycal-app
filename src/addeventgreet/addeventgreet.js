@@ -11,6 +11,8 @@ export default class AddEventGreet extends React.Component {
 
     static contextType = ApiContext;
 
+    
+
     addEvent(event) {
         this.context.addEvent({...event})
         

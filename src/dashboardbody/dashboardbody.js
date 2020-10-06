@@ -4,14 +4,52 @@ import ApiContext from '../ApiContext.js'
 import './dashboardbody.css'
 
 
+
+
 export default class DashboardBody extends React.Component {
 
     static contextType = ApiContext;
 
     render() {
-
+       
         const memberList = this.context.members
         const eventList = this.context.events
+
+        const dates = [
+            "2020-10-01",
+            "2020-10-02",
+            "2020-10-03",
+            "2020-10-04",
+            "2020-10-05",
+            "2020-10-06",
+            "2020-10-07",
+            "2020-10-08",
+            "2020-10-09",
+            "2020-10-10",
+            "2020-10-11",
+            "2020-10-12",
+            "2020-10-13",
+            "2020-10-14",
+            "2020-10-15",
+            "2020-10-16",
+            "2020-10-17",
+            "2020-10-18",
+            "2020-10-19",
+            "2020-10-20",
+            "2020-10-21",
+            "2020-10-22",
+            "2020-10-23",
+            "2020-10-24",
+            "2020-10-25",
+            "2020-10-26",
+            "2020-10-27",
+            "2020-10-28",
+            "2020-10-29",
+            "2020-10-30",
+            "2020-10-31",
+        ]
+
+        
         console.log({memberList})
 
         return(
@@ -42,11 +80,50 @@ export default class DashboardBody extends React.Component {
                         <h3 className='item-g'>Sat</h3>
                     </div>
                     <div className='date-grid'>
-                        <button><time dateTime="2020-10-01">1</time></button>
-                        <button><time dateTime="2020-10-02">2</time></button>
-                        <button><time dateTime="2020-10-03">3</time></button>
-                        <button><time dateTime="2020-10-04">4</time></button>
-                        <button><time dateTime="2020-10-05">5</time></button>
+
+                        <button><time dateTime="2020-10-01">1</time>
+                            <ul>
+                            {eventList.filter(events =>
+                                events.date == "2020-10-01").map(filteredEvents => (
+                                <Link to={`events/${filteredEvents.id}`}>
+                                <li key={filteredEvents.id}>{filteredEvents.name}</li>
+                                </Link>
+                                ))}
+                            </ul>
+                            
+                        </button>
+                        <button><time dateTime="2020-10-02">2</time>
+                            <ul>
+                                {eventList.filter(events =>
+                                    events.date == "2020-10-02").map(filteredEvents => (
+                                    <li key={filteredEvents.id}>{filteredEvents.name}</li>
+                                    ))}
+                            </ul>  
+                        </button>
+                        <button><time dateTime="2020-10-03">3</time>
+                            <ul>
+                                {eventList.filter(events =>
+                                    events.date == "2020-10-03").map(filteredEvents => (
+                                    <li key={filteredEvents.id}>{filteredEvents.name}</li>
+                                    ))}
+                            </ul>
+                        </button>
+                        <button><time dateTime="2020-10-04">4</time>
+                            <ul>
+                                {eventList.filter(events =>
+                                    events.date == "2020-10-04").map(filteredEvents => (
+                                    <li key={filteredEvents.id}>{filteredEvents.name}</li>
+                                    ))}
+                            </ul>
+                        </button>
+                        <button><time dateTime="2020-10-05">5</time>
+                            <ul>
+                                {eventList.filter(events =>
+                                    events.date == "2020-10-02").map(filteredEvents => (
+                                    <li key={filteredEvents.id}>{filteredEvents.name}</li>
+                                    ))}
+                            </ul>
+                        </button>
                         <button><time dateTime="2020-10-06">6</time></button>
                         <button><time dateTime="2020-10-07">7</time></button>
                         <button><time dateTime="2020-10-08">8</time></button>
