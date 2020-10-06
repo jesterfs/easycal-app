@@ -1,0 +1,25 @@
+.dashboard {
+    text-align: center;
+}
+
+.calendar {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.day-of-week,
+.date-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.date-grid button:first-child {
+    grid-column: 5;
+}
+
+.date-grid button {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 100%;
+}

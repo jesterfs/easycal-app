@@ -1,0 +1,31 @@
+.greetgroup {
+    background-color: white;
+    color: black;
+}
+
+.greetgroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0px;
+    justify-content: space-between;
+    text-align: center;
+   }
+   
+   @media all and (min-width: 800px) {
+     .wrapper {
+       width: 80%;
+       margin: auto;
+     }
+   
+     
+   }
+   
+   .item {
+     flex: 1;
+     margin: 10px;
+     
+   }
+
+   .dashboardbtn {
+       margin: 10px;
+   }
