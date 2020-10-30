@@ -13,9 +13,9 @@
   grid-template-columns: repeat(7, 1fr);
 }
 
-.date-grid button:first-child {
+/* .date-grid button:first-child {
     grid-column: 5;
-}
+} */
 
 .date-grid button {
     position: relative;

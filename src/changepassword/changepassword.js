@@ -1,0 +1,77 @@
+import React from 'react'
+import { NavLink, Link } from 'react-router-dom'
+import './changepassword.css'
+import ApiContext from '../ApiContext'
+import cfg from '../config.js'
+
+function updatePassword(updatedFields, id) {
+    
+    return fetch(cfg.API_ENDPOINT + 'members/' + id , {
+        method: 'PATCH', 
+        body: JSON.stringify(updatedFields),
+        headers: { 'Content-type': 'application/json' }
+    })
+    
+    .then(r => r.json())
+    .then(console.log('success!'))
+    
+}
+
+export default class ChangePassword extends React.Component {
+    
+
+    static contextType = ApiContext
+
+    changeMember(updatedFields) {
+        const id = this.context.currentUser.id
+        updatePassword(updatedFields, id)
+            .then(this.props.history.push(`/account`))
+        .catch(() => alert("Couldn't add member, sorry"))      
+    }
+
+
+    formSubmitted = e => { 
+        e.preventDefault()
+    
+        const password1 = e.currentTarget.newpassword.value
+        const password2 = e.currentTarget.newpassword2.value
+
+        const updatedFields = {
+            password: password1
+        }
+        
+        if(password1 != password2) {
+            return alert('Please make sure passwords match.')
+        }
+        console.log(this.context.currentUser.id)
+        this.changeMember(updatedFields)
+      }
+    
+    render() {
+        return(
+            <div className='changepassword, greetgroup'>
+                    <div className='item'>
+                        <h2>Change Your Password</h2>
+                    </div>
+                    
+                    <div className='item'>
+                        <form class='change-password-form' onSubmit={this.formSubmitted}>
+                            
+                            <div>
+                                <label for="newpassword">New Password</label>
+                                <input type="password" name='newpassword' id='newpassword' />
+                            </div>
+                            <div>
+                                <label for="newpasswordagain">Confirm Password</label>
+                                <input type="password" name='newpassword2' id='newpassword2' />
+                            </div>
+
+                            <button type='submit'>Login</button>
+                        </form>
+                    </div>
+                    
+            </div>
+        )
+        
+    }
+}

@@ -7,14 +7,15 @@ export default class LandingNav extends React.Component {
         return(
             <div className='LandingNav, group'>
                     <div className='item'>
-                        <button>Log In</button>
+                        <Link to='/login'><button>Log In</button></Link>
+                        
                     </div>
                     
                     <div className='item'>
                         <h1>EasyCal</h1>
                     </div>
                     <div className='item'>
-                        <button>Sign Up</button>
+                        <Link to='/signup'><button>Sign Up</button></Link>
                         
                     </div>
             </div>

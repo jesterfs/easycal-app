@@ -13,20 +13,80 @@ import SignUpNav from "./signupnav/signupnav";
 import SignUpGreet from "./signupgreet/signupgreet";
 import LoginNav from "./loginnav/loginnav";
 import LoginGreet from "./logingreet/logingreet";
+import AccountGreet from "./accountgreet/accountgreet";
+import AccountNav from "./accountnav/accountnav";
+import ChangePassword from "./changepassword/changepassword";
 import Footer from "./footer/footer";
 import ApiContext from './ApiContext';
 import EventDetails from './eventdetails/eventdetails'
-
+import cfg from './config.js'
+import moment from 'moment';
 
 class App extends Component {
 
   state = {
     members: [],
-    events: []
+    events: [],
+    currentUser: null,
+    userCalendars: [],
+    currentCalendar: [
+      
+    ]
 };
-  
 
-handleDeleteEvent = eventId => {
+// setCalendars = userCalendars => {
+//   this.setState({
+//     userCalendars
+    
+//   })
+// }
+
+fetchUserData() {
+  fetch(cfg.API_ENDPOINT + `members/${this.state.currentUser.id}`, {
+    method: 'GET', 
+    headers: {
+      'Content-Type': 'application/json',
+    }
+    
+  })
+    .then(response => response.json())
+    .then(data => this.setState({
+      userCalendars: data.calendars
+    }, 
+    ()  => {
+      if (this.state.userCalendars.length)
+         this.handleChangeCalendar(this.state.userCalendars[0].id)
+    }
+  ))
+    
+
+}
+
+handleChangeCalendar = (calendarId) => {
+
+  fetch(`http://localhost:8000/api/calendars/${calendarId}`, {
+      method: 'GET', 
+      headers: {
+        'Content-Type': 'application/json',
+      }
+      
+    })
+      .then(response => response.json())
+      .then(data => this.setState({
+        currentCalendar: data,
+        events: data.events.map((event) => ({...event, start: moment(event.start), end: moment(event.end)})),
+        members: data.members
+      }))
+
+}
+
+isLoggedIn = () => !!this.state.currentUser;
+
+handleChangeUser = (user) => {
+  this.setState({currentUser: user })
+}
+
+handleDeleteEvent = (eventId) => {
   console.log(eventId, this.state.events)
   this.setState({
       events: this.state.events.filter(event => event.id !== eventId)
@@ -44,6 +104,15 @@ handleAddMember = (member) => {
   this.setState({members: [...this.state.members, member]})
 }
 
+
+componentDidMount() {
+  if(this.isLoggedIn()) {
+    this.fetchUserData()
+  }
+
+  this.setState({ currentUser: { id: 1 } }, this.fetchUserData);
+}
+
   renderNavRoutes() {
     return(
       <>
@@ -54,6 +123,8 @@ handleAddMember = (member) => {
       <Route path="/addmember" component={AddMemberNav} />
       <Route path="/addevent" component={AddMemberNav} />
       <Route path="/events/:eventId" component={AddMemberNav} />
+      <Route path="/account" component ={AccountNav} />
+      <Route path="/changepassword" component={AddMemberNav} />
 
       
       </>
@@ -69,7 +140,9 @@ handleAddMember = (member) => {
       <Route path="/signup" component={SignUpGreet} />
       <Route path="/login" component={LoginGreet} />
       <Route path="/addmember" component={AddMemberGreet} />
-      <Route path="events/:eventId" component ={EventDetails} />
+      <Route path="/events/:eventId" component ={EventDetails} />
+      <Route path="/account" component ={AccountGreet} />
+      <Route path="/changepassword" component ={ChangePassword} />
       </>
     )
   }
@@ -102,9 +175,15 @@ handleAddMember = (member) => {
     const value = {
       members: this.state.members,
       events: this.state.events,
+      userCalendars: this.state.userCalendars,
+      currentCalendar: this.state.currentCalendar,
+      currentUser: this.state.currentUser,
       deleteEvent: this.handleDeleteEvent,
       addEvent: this.handleAddEvent, 
-      addMember: this.handleAddMember
+      addMember: this.handleAddMember,
+      changeUser: this.handleChangeUser,
+      changeCalendar: this.handleChangeCalendar,
+      isLoggedIn: this.isLoggedIn
     }
     return (
       <ApiContext.Provider value={value}>

@@ -2,35 +2,85 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './addeventgreet.css'
 import ApiContext from '../ApiContext.js'
+import moment from 'moment'
+import cfg from '../config.js'
+
+function addEventToApi(event) {
+    console.log(event)
+    return fetch(cfg.API_ENDPOINT + 'events', {
+        method: 'POST', 
+        body: JSON.stringify(event),
+        headers: { 'Content-type': 'application/json' }
+    })
+    
+    .then(r => r.json())
+    
+}
 
 export default class AddEventGreet extends React.Component {
 
     state = {
+        availableMembers: [],
         addedMembers:[]
     }
 
     static contextType = ApiContext;
 
+    // componentDidMount(){
+    //     // this.setState({availableMembers: [this.context.members]})
+    // }
+
+    addMembers = e => {
+        e.preventDefault()
+
+        const inviteId = e.currentTarget.eventParticipants.value
+        if(!this.state.addedMembers.includes(inviteId)) {
+            this.setState({addedMembers:[...this.state.addedMembers, inviteId]})
+        }
+        
+    }
+
     
 
     addEvent(event) {
-        this.context.addEvent({...event})
-        
-        this.props.history.push(`/dashboard`)
+        // this.context.addEvent({...event})
+        addEventToApi(event)
+        .then(event => {
+            this.context.addEvent(event)
+            this.props.history.push(`/dashboard`)
+        })
+        .catch(() => alert("Couldn't add event, sorry"))
     }
 
     formSubmitted = e => { 
         e.preventDefault()
-    
+        
+        const dateStr = e.currentTarget.eventDate.value
+        const start = e.currentTarget.eventStartTime.value
+        const end = e.currentTarget.eventEndTime.value
+        const start_time = moment(`${dateStr} ${start}`, "YYYY-MM-DD HH:mm");
+        const end_time = moment(`${dateStr} ${end}`, "YYYY-MM-DD HH:mm");
+
+        //this works for now but must change to reflect the user
+        const owner_id = this.context.currentCalendar.owner;
+
+        const calendar_id = this.context.currentCalendar.id;
+
+        const inviteIds = Array.from(e.currentTarget.eventParticipants.options)
+        .filter(o => o.selected).map(o => Number(o.value))
+
+
         const event = {
-          id: this.context.events.length , 
           name: e.currentTarget.eventName.value ,
-          date:  e.currentTarget.eventDate.value, 
-          startTime: e.currentTarget.eventStartTime.value, 
-          endTime: e.currentTarget.eventEndTime.value, 
-          participants: e.currentTarget.eventParticipants.value, 
+          start_time, 
+          end_time, 
+          owner_id,
+          calendar_id,
+          inviteIds
         }
-        // console.log(member)
+
+        
+        console.log(inviteIds)
         this.addEvent(event)
       }
 
@@ -39,6 +89,7 @@ export default class AddEventGreet extends React.Component {
     render() {
 
         const memberList = this.context.members;
+        
 
         return(
             <div className='AddEventGreet, greetgroup'>
@@ -47,7 +98,9 @@ export default class AddEventGreet extends React.Component {
                     </div>
                     
                     <div className='item'>
-                        <form className='add-event-form' onSubmit={this.formSubmitted}>
+                        <form className='add-event-form' onSubmit={this.formSubmitted} 
+                        // onClick={this.addMembers}
+                        >
                 
                             <div>
                                 <label htmlFor="eventName">Event Name</label>
@@ -64,15 +117,19 @@ export default class AddEventGreet extends React.Component {
                                 <input type="time" name='eventEndTime' id='eventEndTime' />
                             </div>
                             <div>
-                                <label htmlFor="eventParticipants">Event Participants:</label>
-                                <br></br>
-                                <select name="eventParticipants" id="eventParticipants" multiple>
+                                
+                                    <label htmlFor="eventParticipants">Event Participants:</label>
+                                    <br></br>
+                                    <select name="eventParticipants" id="eventParticipants"  multiple>
+                                        
+                                        {memberList.map(member =>
+                                            <option key={member.id} value={member.id}>{member.name}</option>
+                                        )}
                                     
-                                    {memberList.map(member =>
-                                        <option key={member.id} value={member.id}>{member.name}</option>
-                                    )}
+                                    </select> 
                                     
-                                </select>    
+                                
+                                        
                             </div>
 
                             <button type='submit'>Schedule Event</button>

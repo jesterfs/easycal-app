@@ -2,6 +2,20 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './addmembergreet.css'
 import ApiContext from '../ApiContext.js'
+import cfg from '../config.js'
+
+function addMemberToApi(member) {
+    console.log(member)
+    return fetch(cfg.API_ENDPOINT + 'members', {
+        method: 'POST', 
+        body: JSON.stringify(member),
+        headers: { 'Content-type': 'application/json' }
+    })
+    
+    .then(r => r.json())
+    .then(console.log('success!'))
+    
+}
 
 export default class AddMemberGreet extends React.Component {
 
@@ -9,21 +23,37 @@ export default class AddMemberGreet extends React.Component {
     static contextType = ApiContext;
 
     addMember(member) {
-        this.context.addMember({...member})
+        // this.context.addEvent({...event})
+        addMemberToApi(member)
         
-        this.props.history.push(`/dashboard`)
+        .then(member => {
+            this.context.addMember(member)
+            this.props.history.push(`/dashboard`)
+        })
+        .catch(() => alert("Couldn't add member, sorry"))
     }
+
 
     formSubmitted = e => { 
         e.preventDefault()
-    
+        
+
+        //this works for now but must change to reflect the user
+        
+
+
+        const calendarIds = Array.from(e.currentTarget.selectMemberCalendars.options)
+        .filter(o => o.selected).map(o => Number(o.value))
+
+
         const member = {
-          id: this.context.members.length , 
           name: e.currentTarget.memberName.value ,
-          email:  e.currentTarget.memberEmail.value, 
-          password: null,
+          email: e.currentTarget.memberEmail.value,
+          calendarIds
         }
-        // console.log(member)
+
+        
+        
         this.addMember(member)
       }
 
@@ -46,6 +76,17 @@ export default class AddMemberGreet extends React.Component {
                             <div>
                                 <label htmlFor="memberEmail">Team Name</label>
                                 <input type="email" name='memberEmail' id='memberEmail' placeholder='Email' />
+                            </div>
+                            <div>
+                            <label htmlFor="selectMemberCalendars">Select Calendars:</label>
+                                    <br></br>
+                                    <select name="selectMemberCalendars" id="selectMemberCalendars"  multiple>
+                                        
+                                        {this.context.userCalendars.map(calendar =>
+                                            <option key={calendar.id} value={calendar.id}>{calendar.name}</option>
+                                        )}
+                                    
+                                    </select> 
                             </div>
 
                             <button type='submit'>Send Invite</button>

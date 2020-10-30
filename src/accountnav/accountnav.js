@@ -1,20 +1,20 @@
 import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
-import './dashboardnav.css'
+import './accountnav.css'
 
-export default class DashboardNav extends React.Component {
+export default class AccountNav extends React.Component {
     render() {
         return(
-            <div className='DashboardNav, group'>
+            <div className='AccountNav, group'>
                     <div className='item'>
-                        <Link to='/account'><button>Account</button></Link>
+                        <Link to='/addevent'><button>Add an Event</button></Link>
                     </div>
                     
                     <div className='item'>
                         <h1>EasyCal</h1>
                     </div>
                     <div className='item'>
-                        <Link to='/addmember'><button>Add Team Member</button></Link>
+                        <Link to='/dashboard'><button>Dashboard</button></Link>
                         
                     </div>
             </div>

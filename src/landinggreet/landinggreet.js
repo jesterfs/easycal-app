@@ -14,7 +14,7 @@ export default class LandingGreet extends React.Component {
                         <h3>A scheduling solution for the modern office.</h3>
                     </div>
                     <div>
-                        <button>Create an Account</button>
+                        <Link to='/signup'><button>Create an Account</button></Link>
                     </div>
                     
             </div>
