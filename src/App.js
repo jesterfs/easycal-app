@@ -25,14 +25,15 @@ import cfg from './config.js'
 import moment from 'moment';
 import {fromApi} from './diplomat.js';
 import TokenServices from './services/token-services';
+import Store from './store.js'
 
 class App extends Component {
 
   state = {
-    members: [],
+    members: Store.members,
     events: [],
     currentUser: null,
-    userCalendars: [],
+    userCalendars: Store.Calendars,
     currentCalendar: [],
     currentEvent: null
     
@@ -45,28 +46,7 @@ class App extends Component {
 //   })
 // }
 
-fetchUserData = (id) => {
-  
-  fetch(cfg.API_ENDPOINT + `members/${id}`, {
-    method: 'GET', 
-    headers: {
-      'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-      'Content-Type': 'application/json',
-    }
-    
-  })
-    .then(response => response.json())
-    .then(data => this.setState({
-      userCalendars: data.calendars
-    }, 
-    ()  => {
-      if (this.state.userCalendars.length)
-         this.handleChangeCalendar(this.state.userCalendars[0].id)
-    }
-  ))
-    
 
-}
 
 handleChangeCalendar = (calendarId) => {
 
