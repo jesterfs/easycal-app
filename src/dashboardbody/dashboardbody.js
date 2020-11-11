@@ -28,31 +28,7 @@ export default class DashboardBody extends React.Component {
 
       
 
-    // CalendarDay(
-    //     {
-    //         style={},
-    //         moment,
-    //         eventList
-    //       }
-    // ) {
-    //     return (
-    //         <button style={style}>
-    //             <time dateTime={moment.format('YYYY-MM-DD')}>
-    //                 {moment.dayOfMonth()}
-    //             </time>
-    //             <ul>
-    //                 {eventList.map((e) => (
-    //                     <Link to={`events/${e.id}`}>
-    //                     <li key={e.id}>{e.name}</li>
-    //                     </Link>
-    //                     ))}
-    //             </ul>
-    //         </button>
-    //     )
-            
-     
-
-    // }
+      
     
 
     render() {

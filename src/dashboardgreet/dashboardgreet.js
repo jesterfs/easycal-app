@@ -46,6 +46,10 @@ export default class DashboardGreet extends React.Component {
                         <h3>{this.context.currentCalendar.name}</h3>
                     </div>
                     <div className='item, dashboardbtn'>
+                        <Link to='/addcalendar'><button>Add A Calendar</button></Link>
+                        
+                    </div>
+                    <div className='item, dashboardbtn'>
                         <Link to='/addevent'><button>Add An Event</button></Link>
                         
                     </div>

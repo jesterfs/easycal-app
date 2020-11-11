@@ -3,13 +3,16 @@ import { NavLink, Link } from 'react-router-dom'
 import './changepassword.css'
 import ApiContext from '../ApiContext'
 import cfg from '../config.js'
+import TokenServices from '../services/token-services';
 
 function updatePassword(updatedFields, id) {
     
     return fetch(cfg.API_ENDPOINT + 'members/' + id , {
         method: 'PATCH', 
         body: JSON.stringify(updatedFields),
-        headers: { 'Content-type': 'application/json' }
+        headers: { 
+            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+            'Content-type': 'application/json' }
     })
     
     .then(r => r.json())

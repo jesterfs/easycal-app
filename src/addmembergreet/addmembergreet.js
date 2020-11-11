@@ -3,17 +3,19 @@ import { NavLink, Link } from 'react-router-dom'
 import './addmembergreet.css'
 import ApiContext from '../ApiContext.js'
 import cfg from '../config.js'
+import TokenServices from '../services/token-services';
 
 function addMemberToApi(member) {
     console.log(member)
     return fetch(cfg.API_ENDPOINT + 'members', {
         method: 'POST', 
         body: JSON.stringify(member),
-        headers: { 'Content-type': 'application/json' }
+        headers: { 
+            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+            'Content-type': 'application/json' }
     })
-    
     .then(r => r.json())
-    .then(console.log('success!'))
+    .then(() => console.log('success!'))
     
 }
 
@@ -51,6 +53,8 @@ export default class AddMemberGreet extends React.Component {
           email: e.currentTarget.memberEmail.value,
           calendarIds
         }
+
+        // const updatedFields
 
         
         

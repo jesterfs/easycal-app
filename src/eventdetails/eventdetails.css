@@ -44,3 +44,11 @@
    input {
     margin: 5px;
 }
+
+.detailsLi  {
+  margin-top: 10px;
+}
+
+.detailsBtn { 
+  margin: 10px;
+}

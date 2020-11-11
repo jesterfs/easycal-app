@@ -4,11 +4,17 @@
 .footergroup {
     display: flex;
     flex-direction: column;
-    margin-bottom: 0px;
+   
+    min-height: 2%;
     justify-content: space-between;
     text-align: center;
     background-color: black;
     color: rgb(179, 176, 176);
+    position: fixed ;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  
    }
 
 

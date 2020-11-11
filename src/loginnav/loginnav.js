@@ -14,7 +14,7 @@ export default class LoginNav extends React.Component {
                         <h1>EasyCal</h1>
                     </div>
                     <div className='item'>
-                        <button>Sign Up</button>
+                        <Link to='/signup'> <button>Sign Up</button> </Link>
                         
                     </div>
             </div>

@@ -7,7 +7,7 @@ export default class AddMemberNav extends React.Component {
         return(
             <div className='AddMemberNav, group'>
                     <div className='item'>
-                        <button>Account</button>
+                        <Link to='/account'><button>Account</button></Link>
                     </div>
                     
                     <div className='item'>

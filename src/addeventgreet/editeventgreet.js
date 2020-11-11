@@ -9,10 +9,10 @@ import TokenServices from '../services/token-services';
 
 
 
-function addEventToApi(event) {
+function updateEventOnApi(event, eventId) {
     console.log(event)
-    return fetch(cfg.API_ENDPOINT + 'events', {
-        method: 'POST', 
+    return fetch(cfg.API_ENDPOINT + 'events/' + eventId, {
+        method: 'PATCH', 
         body: JSON.stringify(event),
         headers: { 
             'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
@@ -23,7 +23,7 @@ function addEventToApi(event) {
     
 }
 
-export default class AddEventGreet extends React.Component {
+export default class EditEventGreet extends React.Component {
 
     state = {
         availableMembers: [],
@@ -48,17 +48,18 @@ export default class AddEventGreet extends React.Component {
 
     
 
-    addEvent(event) {
-        // this.context.addEvent({...event})
-        addEventToApi(event)
-        .then(event => {
-        
-            this.context.addEvent(fromApi(event))
-            this.props.history.push(`/dashboard`)
+    updateEvent(event) {
+        const eventId = this.props.match.params.eventId
+        updateEventOnApi(event, eventId)
+        .then(updatedEvent => {
+            console.log(updatedEvent, fromApi(updatedEvent))
+            this.context.changeEvent(eventId)
+            this.context.updateEvent(fromApi(updatedEvent))
+            this.props.history.push(`/events/${eventId}`)
         })
         .catch((e) =>  {
             console.log(e)
-            alert("Couldn't add event, sorry")
+            alert("Couldn't update event, sorry")
 
     })
     }
@@ -90,9 +91,19 @@ export default class AddEventGreet extends React.Component {
           inviteIds
         }
 
+        // const updatedEvent = {
+        //     id: this.props.match.params.eventId,
+        //     name: e.currentTarget.eventName.value ,
+        //     start_time, 
+        //     end_time, 
+        //     owner_id,
+        //     calendar_id,
+        //     inviteIds
+        // }
+
         
         console.log(inviteIds)
-        this.addEvent(event)
+        this.updateEvent(event)
       }
 
 
@@ -100,6 +111,10 @@ export default class AddEventGreet extends React.Component {
     render() {
 
         const memberList = this.context.members;
+        const eventId = this.props.match.params.eventId
+        const event = this.context.currentEvent
+        
+
         
 
         return(
@@ -110,22 +125,22 @@ export default class AddEventGreet extends React.Component {
                     
                     <div className='item'>
                         <form className='add-event-form' onSubmit={this.formSubmitted} 
-                        // onClick={this.addMembers}
+                        
                         >
                 
                             <div>
                                 <label htmlFor="eventName">Event Name</label>
-                                <input type="text" name='eventName' id='eventName' placeholder='Event Name' />
+                                <input type="text" name='eventName' id='eventName' defaultValue={event.name} placeholder={event.name} />
                             </div>
                             <div>
                                 <label htmlFor="eventDate">Date</label>
-                                <input type="date" name='eventDate' id='eventDate'  />
+                                <input type="date" name='eventDate' id='eventDate'  required/>
                             </div>
                             <div>
                                 <label htmlFor="eventStartTime">Start Time</label>
-                                <input type="time" name='eventStartTime' id='eventStartTime' />
+                                <input type="time" name='eventStartTime' id='eventStartTime' required/>
                                 <label htmlFor="eventEndTime">End Time</label>
-                                <input type="time" name='eventEndTime' id='eventEndTime' />
+                                <input type="time" name='eventEndTime' id='eventEndTime' required/>
                             </div>
                             <div>
                                 

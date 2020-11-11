@@ -3,13 +3,19 @@ import { NavLink, Link } from 'react-router-dom'
 import './signupgreet.css'
 import ApiContext from '../ApiContext.js'
 import cfg from '../config.js'
+import TokenServices from '../services/token-services'
+var generator = require('generate-password');
+
+
 
 function addMemberToApi(member) {
     console.log(member)
-    return fetch(cfg.API_ENDPOINT + 'members', {
+    return fetch(cfg.API_ENDPOINT + 'members/signup' , {
         method: 'POST', 
         body: JSON.stringify(member),
-        headers: { 'Content-type': 'application/json' }
+        headers: { 
+            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+            'Content-type': 'application/json' }
     })
     
     .then(r => r.json())
@@ -45,13 +51,14 @@ export default class SignUpGreet extends React.Component {
     static contextType = ApiContext;
 
     addMember(member) {
-        // this.context.addEvent({...event})
+        this.context.addMember({...member})
         addMemberToApi(member)
         
-        .then(member => {
+        .then(body => {
             // addCalendarToApi(calendar)
-            this.context.addMember(member)
-            this.context.changeUser(member)
+            this.context.addMember(body.member)
+            this.context.changeUser(body.member)
+            TokenServices.saveAuthToken(body.token)
             // addMemberToCalendar(member.id, )
             this.props.history.push(`/dashboard`)
         })

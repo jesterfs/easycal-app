@@ -2,30 +2,57 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './logingreet.css'
 import ApiContext from '../ApiContext'
+import cfg from '../config.js'
+import TokenServices from '../services/token-services'
+
+
+
 
 export default class LoginGreet extends React.Component {
     
+    login(email, password) {
+    
+        return fetch(cfg.API_ENDPOINT + 'members/login', {
+            method: 'POST', 
+            body: JSON.stringify({email, password}),
+            headers: { 
+                'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+                'Content-type': 'application/json' }
+        })
+        
+        .then(r => r.json())
+        
+        
+    }
 
     static contextType = ApiContext
 
-    changeUser(user) {
-        this.context.changeUser({...user})
+    handleSubmitBasicAuth = ev => {
+        ev.preventDefault()
         
-        this.props.history.push(`/dashboard`)
+        const { email, password } = ev.target
+        
+        this.login(email.value, password.value)
+        
+        .then(r => {
+            
+            
+            console.log(r)
+            this.context.changeUser(r.member)
+            this.context.fetchUserData(r.member.id)
+            TokenServices.saveAuthToken(r.token)
+            this.props.history.push('/dashboard')
+            
+            
+        })
+            
+                
+                
+           
+       
+
+                
     }
-
-
-    formSubmitted = e => { 
-        e.preventDefault()
-    
-        const user = {
-          email:  e.currentTarget.loginEmail.value, 
-          password: e.currentTarget.loginPassword.value
-        }
-        // console.log(member)
-        this.changeUser(user)
-      }
-    
     render() {
         return(
             <div className='LoginGreet, greetgroup'>
@@ -34,15 +61,15 @@ export default class LoginGreet extends React.Component {
                     </div>
                     
                     <div className='item'>
-                        <form class='login-form' onSubmit={this.formSubmitted}>
+                        <form className='login-form' onSubmit={this.handleSubmitBasicAuth}>
                             
                             <div>
-                                <label for="loginEmail">Email</label>
-                                <input type="email" name='loginEmail' id='loginEmail' />
+                                <label htmlFor="email">Email</label>
+                                <input type="email" name='email' id='email' />
                             </div>
                             <div>
-                                <label for="loginPassword">Password</label>
-                                <input type="password" name='loginPassword' id='loginPassword' />
+                                <label htmlFor="password">Password</label>
+                                <input type="password" name='password' id='password' />
                             </div>
 
                             <button type='submit'>Login</button>

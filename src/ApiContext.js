@@ -6,10 +6,16 @@ events: [],
 currentUser: [],
 userCalendars: [],
 currentCalendar: [],
+currentEvent: [],
 addEvent: () => {},
 addMember: () => {},
 deleteEvent: () => {},
 changeUser: () => {},
 changeCalendar: () => {},
-isLoggedIn: () => {}
+isLoggedIn: () => {},
+addCalendar: () => {},
+fetchUserData: () => {},
+changeEvent: () => {},
+updateEvent: () => {},
+
 })
