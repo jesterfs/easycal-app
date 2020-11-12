@@ -9,58 +9,26 @@ import TokenServices from '../services/token-services';
 
 
 
-function addEventToApi(event) {
-    console.log(event)
-    return fetch(cfg.API_ENDPOINT + 'events', {
-        method: 'POST', 
-        body: JSON.stringify(event),
-        headers: { 
-            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-            'Content-type': 'application/json' }
-    })
-    
-    .then(r => r.json())
-    
-}
+
 
 export default class AddEventGreet extends React.Component {
 
-    state = {
-        availableMembers: [],
-        addedMembers:[]
-    }
+    
 
     static contextType = ApiContext;
 
-    // componentDidMount(){
-    //     // this.setState({availableMembers: [this.context.members]})
-    // }
 
-    addMembers = e => {
-        e.preventDefault()
-
-        const inviteId = e.currentTarget.eventParticipants.value
-        if(!this.state.addedMembers.includes(inviteId)) {
-            this.setState({addedMembers:[...this.state.addedMembers, inviteId]})
-        }
-        
-    }
 
     
 
     addEvent(event) {
         // this.context.addEvent({...event})
-        addEventToApi(event)
-        .then(event => {
+        
         
             this.context.addEvent(fromApi(event))
             this.props.history.push(`/dashboard`)
-        })
-        .catch((e) =>  {
-            console.log(e)
-            alert("Couldn't add event, sorry")
 
-    })
+    
     }
 
     formSubmitted = e => { 
@@ -79,9 +47,11 @@ export default class AddEventGreet extends React.Component {
 
         const inviteIds = Array.from(e.currentTarget.eventParticipants.options)
         .filter(o => o.selected).map(o => Number(o.value))
-
+        const eventsLength = this.context.events.length
+        const newId = eventsLength + 1
 
         const event = {
+          id: newId,  
           name: e.currentTarget.eventName.value ,
           start_time, 
           end_time, 

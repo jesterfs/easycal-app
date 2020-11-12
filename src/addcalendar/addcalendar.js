@@ -6,19 +6,7 @@ import moment from 'moment'
 import cfg from '../config.js'
 import TokenServices from '../services/token-services';
 
-function addCalendarToApi(calendar) {
-    console.log(calendar)
-    return fetch(cfg.API_ENDPOINT + 'calendars', {
-        method: 'POST', 
-        body: JSON.stringify(calendar),
-        headers: { 
-            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-            'Content-type': 'application/json' }
-    })
-    
-    .then(r => r.json())
-    
-}
+
 
 
 
@@ -34,12 +22,11 @@ export default class AddEventGreet extends React.Component {
 
     addCalendar(calendar) {
 
-        addCalendarToApi(calendar)
-        .then(calendar => {
-            this.context.addCalendar(calendar)
+        
+            this.context.addCalendar(calendar) 
+            // 
             this.props.history.push(`/dashboard`)
-        })
-        .catch(() => alert("Couldn't add calendar, sorry"))
+        
         
     }
 
@@ -58,9 +45,11 @@ export default class AddEventGreet extends React.Component {
 
     formSubmitted = e => { 
         e.preventDefault()
-
+        const calendarLength = this.context.userCalendars.length
+        const newId = calendarLength + 1
 
         const calendar = {
+          id: newId,
           name: e.currentTarget.calendarName.value ,
           owner: this.context.currentUser.id,
           inviteIds: [this.context.currentUser.id]
@@ -74,6 +63,8 @@ export default class AddEventGreet extends React.Component {
 
 
     render() {
+
+       
 
         
         

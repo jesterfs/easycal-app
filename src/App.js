@@ -32,9 +32,9 @@ class App extends Component {
   state = {
     members: Store.members,
     events: [],
-    currentUser: null,
+    currentUser: Store.members[0],
     userCalendars: Store.Calendars,
-    currentCalendar: [],
+    currentCalendar: Store.Calendars[0],
     currentEvent: null
     
 };
@@ -48,64 +48,50 @@ class App extends Component {
 
 
 
-handleChangeCalendar = (calendarId) => {
+handleChangeCalendar = (calendar) => {
 
-  fetch(`http://localhost:8000/api/calendars/${calendarId}`, {
-      method: 'GET', 
-      headers: {
-        'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-        'Content-Type': 'application/json',
-      }
-      
-    })
-      .then(response => response.json())
-      .then(data => 
-        
-        this.setState({
-        currentCalendar: data,
-        events: data.events.map(fromApi),
-        members: data.members
-      })
-        
-      )
-      
-      }
-
-
-
-setEvents = (events) => {
+  
+  
+  this.setState({currentCalendar: calendar})
+  console.log(calendar.id)
+  this.setEvents(calendar.id)
+}
+setEvents = (calendarId) => {
+  const events = Store.events.filter(event => event.calendar_id == calendarId)
+  console.log(events)
   if(events.length) {
     this.setState({events: events.map((event) => ({...event, start: moment(event.start), end: moment(event.end)}))})
+  }
+  if(!events.length) {
+    this.setState({events: []})
   }
 }
 
 
 handleChangeEvent = (eventId) => {
-  return fetch(cfg.API_ENDPOINT + 'events' + '/' + eventId, {
-    method: 'GET', 
-    headers: {
-        'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-       'Content-type': 'application/json' }
-
-})
-
-    .then(r => r.json())
-    .then(r => this.setState({currentEvent: r}))
+  console.log(eventId)
+  const currentEvent = this.state.events.find(event => event.id == eventId)
+  
+  this.setState({currentEvent: currentEvent})
 }
 
 isLoggedIn = () => !!this.state.currentUser;
 
 handleChangeUser = (user) => {
   this.setState({currentUser: user })
-  
+  this.handleChangeCalendar(this.state.userCalendars[0].id)
 }
+
+
 
 handleDeleteEvent = (eventId) => {
   console.log(eventId, this.state.events)
   this.setState({
-      events: this.state.events.filter(event => event.id != eventId)
+      events: this.state.events.filter(event => event.id != eventId),
+      currentEvent: null
       
   });
+
 };
 
 handleAddEvent = (event) => {
@@ -132,8 +118,9 @@ handleAddMember = (member) => {
 
 handleAddCalendar = (calendar) => {
   this.setState({userCalendars: [...this.state.userCalendars, calendar] })
-  this.handleChangeCalendar(calendar.id)
 }
+
+
 
 
 componentDidMount() {
@@ -205,6 +192,8 @@ componentDidMount() {
 
   
   render() {
+
+    // console.log(Store.Calendars)
     const value = {
       members: this.state.members,
       events: this.state.events,
@@ -219,7 +208,6 @@ componentDidMount() {
       changeCalendar: this.handleChangeCalendar,
       isLoggedIn: this.isLoggedIn,
       addCalendar: this.handleAddCalendar,
-      fetchUserData: this.fetchUserData,
       changeEvent: this.handleChangeEvent,
       updateEvent: this.handleUpdateEvent
     }

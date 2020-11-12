@@ -9,59 +9,26 @@ import TokenServices from '../services/token-services';
 
 
 
-function updateEventOnApi(event, eventId) {
-    console.log(event)
-    return fetch(cfg.API_ENDPOINT + 'events/' + eventId, {
-        method: 'PATCH', 
-        body: JSON.stringify(event),
-        headers: { 
-            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-            'Content-type': 'application/json' }
-    })
-    
-    .then(r => r.json())
-    
-}
+
 
 export default class EditEventGreet extends React.Component {
 
-    state = {
-        availableMembers: [],
-        addedMembers:[]
-    }
+    
 
     static contextType = ApiContext;
 
-    // componentDidMount(){
-    //     // this.setState({availableMembers: [this.context.members]})
-    // }
-
-    addMembers = e => {
-        e.preventDefault()
-
-        const inviteId = e.currentTarget.eventParticipants.value
-        if(!this.state.addedMembers.includes(inviteId)) {
-            this.setState({addedMembers:[...this.state.addedMembers, inviteId]})
-        }
-        
-    }
+    
 
     
 
     updateEvent(event) {
         const eventId = this.props.match.params.eventId
-        updateEventOnApi(event, eventId)
-        .then(updatedEvent => {
-            console.log(updatedEvent, fromApi(updatedEvent))
+       
+           
             this.context.changeEvent(eventId)
-            this.context.updateEvent(fromApi(updatedEvent))
+            this.context.updateEvent(fromApi(event))
             this.props.history.push(`/events/${eventId}`)
-        })
-        .catch((e) =>  {
-            console.log(e)
-            alert("Couldn't update event, sorry")
-
-    })
+       
     }
 
     formSubmitted = e => { 
@@ -91,15 +58,7 @@ export default class EditEventGreet extends React.Component {
           inviteIds
         }
 
-        // const updatedEvent = {
-        //     id: this.props.match.params.eventId,
-        //     name: e.currentTarget.eventName.value ,
-        //     start_time, 
-        //     end_time, 
-        //     owner_id,
-        //     calendar_id,
-        //     inviteIds
-        // }
+        
 
         
         console.log(inviteIds)

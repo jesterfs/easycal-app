@@ -29,9 +29,9 @@ export default {
     ],
 
     "events": 
-    [   {"id": 1, "name": "Staff Meeting", "start": "2020-10-01 12:00:00", "end": "2020-10-01 13:00:00", "calendar_id": 1, "owner_id": 1},
-        {"id": 2, "name": "Performance Review", "start": "2020-10-02 12:00:00", "end": "2020-10-02 13:00:00", "calendar_id": 2, "owner_id": 2},
-        {"id": 3, "name": "Inventory", "start": "2020-10-04 12:00:00", "end": "2020-10-04 13:00:00", "calendar_id": 3, "owner_id": 2},
+    [   {"id": 1, "name": "Staff Meeting", "start": "2020-11-01 12:00:00", "end": "2020-11-01 13:00:00", "calendar_id": 1, "owner_id": 1},
+        {"id": 2, "name": "Performance Review", "start": "2020-11-02 12:00:00", "end": "2020-11-02 13:00:00", "calendar_id": 2, "owner_id": 2},
+        {"id": 3, "name": "Inventory", "start": "2020-11-04 12:00:00", "end": "2020-11-04 13:00:00", "calendar_id": 3, "owner_id": 2},
         
     ],
 
