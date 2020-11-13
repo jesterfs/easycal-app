@@ -69,7 +69,7 @@ export default class ChangePassword extends React.Component {
                                 <input type="password" name='newpassword2' id='newpassword2' />
                             </div>
 
-                            <button type='submit'>Login</button>
+                            <button type='submit'>Change Password</button>
                         </form>
                     </div>
                     

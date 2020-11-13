@@ -6,6 +6,7 @@ import ApiContext from '../ApiContext.js'
 import cfg from '../config.js'
 import moment from 'moment';
 import TokenServices from '../services/token-services';
+import {fromApi} from '../diplomat.js';
 
 function findEvent(id) {
     
@@ -70,7 +71,9 @@ export default class EventDetails extends React.Component {
 
         
         const event = this.context.currentEvent
-        // console.log(event)
+        
+        
+       
         
         if (!event) 
         return (
@@ -84,9 +87,10 @@ export default class EventDetails extends React.Component {
                 
                <h1>{event.name}</h1> 
                <ul>
-                   <li className='detailsLi'>Start Time: {event.startTime}</li>
-                   <li className='detailsLi'>End Time: {event.endTime}</li>
-                   <li className='detailsLi'>Scheduled By: {event.owner.name}</li>
+               <li className='detailsLi'>Date: {event.startTime.slice(0, 10)}</li>
+                   <li className='detailsLi'>Start Time: {event.startingTime}</li>
+                   <li className='detailsLi'>End Time: {event.endingTime}</li>
+                   <li className='detailsLi'>Scheduled By: {event.owner.name}</li> 
                    <li className='detailsLi'>Participants: 
                        <ul>
                        {event.members.map(member =>

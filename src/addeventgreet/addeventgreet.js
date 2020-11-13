@@ -67,10 +67,10 @@ export default class AddEventGreet extends React.Component {
         e.preventDefault()
         
         const dateStr = e.currentTarget.eventDate.value
-        const start = e.currentTarget.eventStartTime.value
-        const end = e.currentTarget.eventEndTime.value
-        const start_time = moment(`${dateStr} ${start}`, "YYYY-MM-DD HH:mm");
-        const end_time = moment(`${dateStr} ${end}`, "YYYY-MM-DD HH:mm");
+        const startingtime = e.currentTarget.eventStartTime.value
+        const endingtime = e.currentTarget.eventEndTime.value
+        const start_time = moment(`${dateStr} ${startingtime}`, "YYYY-MM-DD HH:mm");
+        const end_time = moment(`${dateStr} ${endingtime}`, "YYYY-MM-DD HH:mm");
 
         //this works for now but must change to reflect the user
         const owner_id = this.context.currentUser.id;
@@ -84,7 +84,9 @@ export default class AddEventGreet extends React.Component {
         const event = {
           name: e.currentTarget.eventName.value ,
           start_time, 
+          startingtime,
           end_time, 
+          endingtime,
           owner_id,
           calendar_id,
           inviteIds

@@ -158,7 +158,7 @@ export default class EditEventGreet extends React.Component {
                                         
                             </div>
 
-                            <button type='submit'>Schedule Event</button>
+                            <button type='submit'>Save Event</button>
                         </form>
                     </div>
                     

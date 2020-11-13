@@ -34,7 +34,8 @@ class App extends Component {
     currentUser: null,
     userCalendars: [],
     currentCalendar: [],
-    currentEvent: null
+    currentEvent: null,
+    currentEventOwner: null
     
 };
 
@@ -101,6 +102,7 @@ setEvents = (events) => {
 
 
 handleChangeEvent = (eventId) => {
+
   return fetch(cfg.API_ENDPOINT + 'events' + '/' + eventId, {
     method: 'GET', 
     headers: {
@@ -110,8 +112,24 @@ handleChangeEvent = (eventId) => {
 })
 
     .then(r => r.json())
-    .then(r => this.setState({currentEvent: r}))
+    .then(r => 
+      this.setState({currentEvent: r}))
+  
 }
+
+// fetchEventOwner = (ownerId) => {
+//   return fetch(cfg.API_ENDPOINT + 'members' + '/' + ownerId, {
+//     method: 'GET', 
+//     headers: {
+//         'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+//        'Content-type': 'application/json' }
+
+// })
+
+//     .then(r => r.json())
+//     .then(r => 
+//       this.setState({currentEventOwner: r}))
+// }
 
 isLoggedIn = () => !!this.state.currentUser;
 
@@ -232,6 +250,7 @@ componentDidMount() {
       currentCalendar: this.state.currentCalendar,
       currentUser: this.state.currentUser,
       currentEvent: this.state.currentEvent,
+      currentEventOwner: this.state.currentEventOwner,
       deleteEvent: this.handleDeleteEvent,
       addEvent: this.handleAddEvent, 
       addMember: this.handleAddMember,
