@@ -13,10 +13,14 @@ export default class AccountGreet extends React.Component {
 
     handleLogOut = e => {
         e.preventDefault()
-        this.context.changeUser(null)
+        TokenService.clearAuthToken()
+        this.context.clearUser()
         this.props.history.push('/')
 
     }
+
+
+
 
 
     render() {

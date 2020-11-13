@@ -7,7 +7,19 @@ import cfg from '../config.js'
 import TokenServices from '../services/token-services';
 
 
-
+function addCalendarToApi(calendar) {
+    
+    return fetch(cfg.API_ENDPOINT + 'calendars', {
+        method: 'POST', 
+        body: JSON.stringify(calendar),
+        headers: { 
+            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+            'Content-type': 'application/json' }
+    })
+    
+    .then(r => r.json())
+    
+}
 
 
 export default class AddEventGreet extends React.Component {
@@ -22,26 +34,22 @@ export default class AddEventGreet extends React.Component {
 
     addCalendar(calendar) {
 
+        addCalendarToApi(calendar)
+        .then(calendar => {
         
-            this.context.addCalendar(calendar) 
-            // 
+            this.context.addCalendar(calendar)
             this.props.history.push(`/dashboard`)
-        
-        
+        })
+        .catch((e) =>  {
+            
+            alert("Couldn't add event, sorry")
+
+    })
     }
 
     
 
-    // addCalendar(event) {
-    //     // this.context.addEvent({...event})
-    //     const ownerId = this.context.currentUser.id
-    //     addCalendarToApi(calendar)
-    //     .then(event => {
-    //         this.context.addCalendar(event)
-    //         this.props.history.push(`/dashboard`)
-    //     })
-    //     .catch(() => alert("Couldn't add calendar, sorry"))
-    // }
+   
 
     formSubmitted = e => { 
         e.preventDefault()

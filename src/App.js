@@ -46,8 +46,20 @@ class App extends Component {
 //   })
 // }
 
+clearUserData = () => {
+  this.setState({
+    members: [],
+    events: [],
+    currentUser: null,
+    userCalendars: [],
+    currentCalendar: [],
+    currentEvent: null,
+    currentEventOwner: null
+  })
+}
+
 fetchUserData = (id) => {
-  
+  console.log(id)
   fetch(cfg.API_ENDPOINT + `members/${id}`, {
     method: 'GET', 
     headers: {
@@ -57,8 +69,10 @@ fetchUserData = (id) => {
     
   })
     .then(response => response.json())
-    .then(data => this.setState({
+    .then(data => 
+      this.setState({
       userCalendars: data.calendars
+      
     }, 
     ()  => {
       if (this.state.userCalendars.length)
@@ -71,7 +85,7 @@ fetchUserData = (id) => {
 
 handleChangeCalendar = (calendarId) => {
 
-  fetch(`http://localhost:8000/api/calendars/${calendarId}`, {
+  fetch(cfg.API_ENDPOINT + `calendars/${calendarId}`, {
       method: 'GET', 
       headers: {
         'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
@@ -260,7 +274,8 @@ componentDidMount() {
       addCalendar: this.handleAddCalendar,
       fetchUserData: this.fetchUserData,
       changeEvent: this.handleChangeEvent,
-      updateEvent: this.handleUpdateEvent
+      updateEvent: this.handleUpdateEvent,
+      clearUser: this.clearUserData
     }
     return (
       <ApiContext.Provider value={value}>

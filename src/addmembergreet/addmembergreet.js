@@ -5,6 +5,21 @@ import ApiContext from '../ApiContext.js'
 import cfg from '../config.js'
 import TokenServices from '../services/token-services';
 
+function addMemberToApi(member) {
+    console.log(member)
+    return fetch(cfg.API_ENDPOINT + 'members', {
+        method: 'POST', 
+        body: JSON.stringify(member),
+        headers: { 
+            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+            'Content-type': 'application/json' }
+    })
+
+    .then(r => r.json())
+    .then(console.log('success!'))
+    .then(() => console.log('success!'))
+
+}
 
 
 export default class AddMemberGreet extends React.Component {
@@ -13,13 +28,18 @@ export default class AddMemberGreet extends React.Component {
     static contextType = ApiContext;
 
     addMember(member) {
-        
-        
-        
+        // this.context.addEvent({...event})
+        addMemberToApi(member)
+        .then(member => {
         
             this.context.addMember(member)
             this.props.history.push(`/dashboard`)
-       
+        })
+        .catch((e) =>  {
+            console.log(e)
+            alert("Couldn't add member, sorry")
+
+    })
     }
 
 

@@ -18,5 +18,5 @@ addCalendar: () => {},
 fetchUserData: () => {},
 changeEvent: () => {},
 updateEvent: () => {},
-
+clearUser: () => {}
 })

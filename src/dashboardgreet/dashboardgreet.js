@@ -17,7 +17,7 @@ export default class DashboardGreet extends React.Component {
         
     
 
-        this.context.changeCalendar(calendar)
+        this.context.changeCalendar(calendarId)
       }
     
 
