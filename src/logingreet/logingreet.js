@@ -10,20 +10,7 @@ import TokenServices from '../services/token-services'
 
 export default class LoginGreet extends React.Component {
     
-    login(email, password) {
     
-        return fetch(cfg.API_ENDPOINT + 'members/login', {
-            method: 'POST', 
-            body: JSON.stringify({email, password}),
-            headers: { 
-                'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-                'Content-type': 'application/json' }
-        })
-        
-        .then(r => r.json())
-        
-        
-    }
 
     static contextType = ApiContext
 
@@ -31,20 +18,28 @@ export default class LoginGreet extends React.Component {
         ev.preventDefault()
         
         const { email, password } = ev.target
+        const theEmail = email.value
+
         
-        this.login(email.value, password.value)
         
-        .then(r => {
+        const member = this.context.members.filter(member => member.email === theEmail)
+        console.log(member[0])
+
+        const currentMember = member[0]
+
+        // this.login(email.value, password.value)
+        
+        
             
             
-            console.log(r)
-            this.context.changeUser(r.member)
-            this.context.fetchUserData(r.member.id)
-            TokenServices.saveAuthToken(r.token)
-            this.props.history.push('/dashboard')
+            
+        this.context.changeUser(currentMember)
+            
+            // TokenServices.saveAuthToken(r.token)
+        this.props.history.push('/dashboard')
             
             
-        })
+       
             
                 
                 

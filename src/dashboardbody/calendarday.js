@@ -13,11 +13,12 @@ class CalendarDay extends Component {
 
     handleClick = e => {
         const eventId = e.target.id
-        console.log(eventId)
+        
         this.context.changeEvent(eventId)
     }
 
     render() {
+        
    
     return (
         

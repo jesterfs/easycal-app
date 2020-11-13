@@ -13,16 +13,16 @@ export default class DashboardBody extends React.Component {
     eventsFor = (date) => {
         
         const eventList = this.context.events
-        if (eventList.length) {
-            console.log(eventList[0].start.isSame(date, 'day'))
-         }
+        // if (eventList.length) {
+        //     console.log(eventList[0].start.isSame(date, 'day'))
+        //  }
         
         
         const x = eventList.filter(
         //    => 
           event => event.start.isSame(date, 'day')
           );
-          console.log(x)
+        //   console.log(x)
           return x
       }
 
@@ -53,20 +53,25 @@ export default class DashboardBody extends React.Component {
         }
 
         return(
-            <div className='date-grid'>
-                <CalendarDay style={firstStyle} 
-             moment={start} 
-             eventList={this.eventsFor(start)}
-             />
+            <div>
+                <h3 className='monthName'>{moment.months(month)}</h3>
+                <div className='date-grid'>
+                
+                    <CalendarDay style={firstStyle} 
+                moment={start} 
+                eventList={this.eventsFor(start)}
+                />
 
-             {dayList.map((dayNumber) => {
-                const date = moment([year, month , dayNumber]) 
-                return <CalendarDay moment= {date}
-                                    key= {date}
-                                    eventList={this.eventsFor(date)}
-                                    />
-              })}
+                {dayList.map((dayNumber) => {
+                    const date = moment([year, month , dayNumber]) 
+                    return <CalendarDay moment= {date}
+                                        key= {date}
+                                        eventList={this.eventsFor(date)}
+                                        />
+                })}
+                </div>
             </div>
+            
             
 
         )

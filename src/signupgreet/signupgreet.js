@@ -8,68 +8,25 @@ var generator = require('generate-password');
 
 
 
-function addMemberToApi(member) {
-    console.log(member)
-    return fetch(cfg.API_ENDPOINT + 'members/signup' , {
-        method: 'POST', 
-        body: JSON.stringify(member),
-        headers: { 
-            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-            'Content-type': 'application/json' }
-    })
-    
-    .then(r => r.json())
-    .then(console.log('success!'))
-    
-}
 
-// function addCalendarToApi(calendar) {
-//     console.log(calendar)
-//     return fetch(cfg.API_ENDPOINT + 'calendars', {
-//         method: 'POST', 
-//         body: JSON.stringify(calendar),
-//         headers: { 'Content-type': 'application/json' }
-//     })
-    
-//     .then(r => r.json())
-    
-// }
-
-// function addMemberToCalendar(id, calendarIds) {
-//     return fetch(cfg.API_ENDPOINT + 'members' + id, {
-//         method: 'PATCH', 
-//         body: JSON.stringify(calendarIds),
-//         headers: { 'Content-type': 'application/json' }
-//     })
-    
-//     .then(r => r.json())
-//     .then(console.log('success!'))
-// }
 
 export default class SignUpGreet extends React.Component {
     
     static contextType = ApiContext;
 
     addMember(member) {
-        this.context.addMember({...member})
-        addMemberToApi(member)
         
-        .then(body => {
-            // addCalendarToApi(calendar)
-            this.context.addMember(body.member)
-            this.context.changeUser(body.member)
-            TokenServices.saveAuthToken(body.token)
-            // addMemberToCalendar(member.id, )
+            
+            this.context.addMember(member)
+            this.context.changeUser(member)
             this.props.history.push(`/dashboard`)
-        })
-        .catch(() => alert("Couldn't create your account, sorry"))
+       
     }
     
     formSubmitted = e => { 
         e.preventDefault()
         
 
-        //this works for now but must change to reflect the user
         
 
 
