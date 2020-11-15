@@ -42,6 +42,7 @@ export default class LoginGreet extends React.Component {
             this.context.changeUser(r.member)
             this.context.fetchUserData(r.member.id)
             TokenServices.saveAuthToken(r.token)
+            console.log(r)
             this.props.history.push('/dashboard')
 
 

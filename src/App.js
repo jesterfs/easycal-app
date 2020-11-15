@@ -95,12 +95,12 @@ handleChangeCalendar = (calendarId) => {
     })
       .then(response => response.json())
       .then(data => 
-        
         this.setState({
         currentCalendar: data,
-        events: data.events.map(fromApi),
         members: data.members
-      })
+      },
+        this.setEvents(data.events)
+      )
         
       )
       
@@ -109,7 +109,7 @@ handleChangeCalendar = (calendarId) => {
 
 
 setEvents = (events) => {
-  if(events.length) {
+  if(events) {
     this.setState({events: events.map((event) => ({...event, start: moment(event.start), end: moment(event.end)}))})
   }
 }

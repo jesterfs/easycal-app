@@ -31,9 +31,9 @@ export default class AddMemberGreet extends React.Component {
         // this.context.addEvent({...event})
         addMemberToApi(member)
         .then(member => {
-        
-            this.context.addMember(member)
-            this.props.history.push(`/dashboard`)
+            console.log(member)
+            // this.context.addMember(member)
+            // this.props.history.push(`/dashboard`)
         })
         .catch((e) =>  {
             console.log(e)
