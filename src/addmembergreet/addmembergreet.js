@@ -32,8 +32,8 @@ export default class AddMemberGreet extends React.Component {
         addMemberToApi(member)
         .then(member => {
             console.log(member)
-            // this.context.addMember(member)
-            // this.props.history.push(`/dashboard`)
+            this.context.addMember(member)
+            this.props.history.push(`/dashboard`)
         })
         .catch((e) =>  {
             console.log(e)
@@ -85,7 +85,7 @@ export default class AddMemberGreet extends React.Component {
                                 <input type="text" name='memberName' id='memberName' placeholder='Full Name' />
                             </div>
                             <div>
-                                <label htmlFor="memberEmail">Team Name</label>
+                                <label htmlFor="memberEmail">Email</label>
                                 <input type="email" name='memberEmail' id='memberEmail' placeholder='Email' />
                             </div>
                             <div>

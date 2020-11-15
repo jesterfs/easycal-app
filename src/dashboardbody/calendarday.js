@@ -34,7 +34,7 @@ class CalendarDay extends Component {
                         <Link  id={e.id} onClick={this.handleClick} to={`events/${e.id}`} >
                             {e.name}
                         </Link>
-                        
+                            <hr></hr>
                         </li>
                      
                     ))}
