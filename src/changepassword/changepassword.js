@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+
 import './changepassword.css'
 import ApiContext from '../ApiContext'
 import cfg from '../config.js'

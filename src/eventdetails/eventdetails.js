@@ -1,26 +1,26 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './eventdetails.css'
 import ApiContext from '../ApiContext.js'
 // import { findEvent } from '../eventhelpers'
 import cfg from '../config.js'
-import moment from 'moment';
+// import moment from 'moment';
 import TokenServices from '../services/token-services';
-import {fromApi} from '../diplomat.js';
+// import {fromApi} from '../diplomat.js';
 
-function findEvent(id) {
+// function findEvent(id) {
     
-    return fetch(cfg.API_ENDPOINT + 'events/' + id, {
-        method: 'GET', 
+//     return fetch(cfg.API_ENDPOINT + 'events/' + id, {
+//         method: 'GET', 
         
-        headers: { 
-            'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-            'Content-type': 'application/json' }
-    })
-    .then(r => r.json())
-    .then(() => console.log('success!'))
+//         headers: { 
+//             'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+//             'Content-type': 'application/json' }
+//     })
+//     .then(r => r.json())
+//     .then(() => console.log('success!'))
     
-}
+// }
 
 
 function deleteEventFromApi(eventId) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+
 import './addeventgreet.css'
 import ApiContext from '../ApiContext.js'
 import moment from 'moment'
@@ -111,7 +111,7 @@ export default class EditEventGreet extends React.Component {
     render() {
 
         const memberList = this.context.members;
-        const eventId = this.props.match.params.eventId
+        
         const event = this.context.currentEvent
 
 

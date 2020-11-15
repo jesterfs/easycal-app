@@ -20,7 +20,7 @@ export default class LandingBody extends React.Component {
                         </div>
                         
                 </div>
-                <div className='landinggroup group2'>
+                <div className='landinggroup3 group2'>
                         <div className='item'>
                             <h3>Create an Office Wide Calendar</h3>
                             <p>The modern office is a busy office. As your company grows, you add more and more moving parts, and important dates start slipping through the cracks. 
