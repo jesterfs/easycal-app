@@ -29,3 +29,9 @@
    .dashboardbtn {
        margin: 10px;
    }
+
+   .addButtons {
+     display: flex;
+     flex-direction: row;
+     justify-content: center;
+   }

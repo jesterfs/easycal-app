@@ -44,20 +44,24 @@ export default class DashboardGreet extends React.Component {
                         </form>
                     </div>
                     <div className='item'>
-                        <h3>{this.context.currentCalendar.name}</h3>
+                            <h3>{this.context.currentCalendar.name}</h3>
                     </div>
-                    <div className='item, dashboardbtn'>
-                        <Link to='/addcalendar'><button>Add A Calendar</button></Link>
+                    <div className='addButtons'>
                         
+                        <div className='item, dashboardbtn'>
+                            <Link to='/addcalendar'><button>Add A Calendar</button></Link>
+                            
+                        </div>
+                        <div className='item, dashboardbtn'>
+                            <Link to='/addevent'><button>Add An Event</button></Link>
+                            
+                        </div>
+                        <div className='item, dashboardbtn'>
+                            <Link to='/addmember'><button>Add A Team Member</button></Link>
+                            
+                        </div>
                     </div>
-                    <div className='item, dashboardbtn'>
-                        <Link to='/addevent'><button>Add An Event</button></Link>
-                        
-                    </div>
-                    <div className='item, dashboardbtn'>
-                        <Link to='/addmember'><button>Add A Team Member</button></Link>
-                        
-                    </div>
+                    
                     
             </div>
         )

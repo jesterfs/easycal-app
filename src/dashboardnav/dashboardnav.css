@@ -3,13 +3,22 @@
     color: white;
 }
 
+.dashboardNav {
+  display: flex;
+  flex-direction: row;
+}
+
 .group {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     margin-bottom: 0px;
     justify-content: space-between;
     text-align: center;
    }
+
+.addMemberBtn {
+  display: none;
+}
    
    @media all and (min-width: 800px) {
      .wrapper {
@@ -20,6 +29,12 @@
      .group {
        flex-direction: row;
      }
+
+     .addMemberBtn {
+       display: inline;
+     }
+
+
    }
    
    .item {
