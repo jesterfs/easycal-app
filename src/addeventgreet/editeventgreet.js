@@ -120,7 +120,7 @@ export default class EditEventGreet extends React.Component {
         return(
             <div className='AddEventGreet, greetgroup'>
                     <div className='item'>
-                        <h2>Add an Event</h2>
+                        <h2>Edit The Event</h2>
                     </div>
 
                     <div className='item'>
@@ -134,13 +134,13 @@ export default class EditEventGreet extends React.Component {
                             </div>
                             <div>
                                 <label htmlFor="eventDate">Date</label>
-                                <input type="date" name='eventDate' id='eventDate'  required/>
+                                <input type="date" name='eventDate' id='eventDate' defaultValue={event.startTime.slice(0, 10)}  required/>
                             </div>
                             <div>
                                 <label htmlFor="eventStartTime">Start Time</label>
-                                <input type="time" name='eventStartTime' id='eventStartTime' required/>
+                                <input type="time" name='eventStartTime' id='eventStartTime' defaultValue={event.startingTime} required/>
                                 <label htmlFor="eventEndTime">End Time</label>
-                                <input type="time" name='eventEndTime' id='eventEndTime' required/>
+                                <input type="time" name='eventEndTime' id='eventEndTime' defaultValue={event.endingTime} required/>
                             </div>
                             <div>
 
@@ -158,7 +158,7 @@ export default class EditEventGreet extends React.Component {
 
                             </div>
 
-                            <button type='submit'>Schedule Event</button>
+                            <button type='submit'>Save Event</button>
                         </form>
                     </div>
 
