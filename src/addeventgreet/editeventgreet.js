@@ -64,7 +64,10 @@ export default class EditEventGreet extends React.Component {
 
     formSubmitted = e => { 
         e.preventDefault()
-
+        if (e.currentTarget.eventStartTime.value > e.currentTarget.eventEndTime.value ) 
+            {alert('End time must be later than start time.')}
+        else
+        {
         const dateStr = e.currentTarget.eventDate.value
         const startingtime = e.currentTarget.eventStartTime.value
         const endingtime = e.currentTarget.eventEndTime.value
@@ -101,10 +104,11 @@ export default class EditEventGreet extends React.Component {
         //     inviteIds
         // }
 
-
+        
         console.log(inviteIds)
         this.updateEvent(event)
-      }
+        }
+    }
 
 
 
