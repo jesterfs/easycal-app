@@ -16,7 +16,7 @@ export default class LoginGreet extends React.Component {
             method: 'POST', 
             body: JSON.stringify({email, password}),
             headers: { 
-                'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+                
                 'Content-type': 'application/json' }
         })
 
@@ -41,7 +41,7 @@ export default class LoginGreet extends React.Component {
             console.log(r)
             this.context.changeUser(r.member)
             this.context.fetchUserData(r.member.id)
-            TokenServices.saveAuthToken(r.token)
+            TokenServices.saveAuthToken(r.token, r.member.id)
             console.log(r)
             this.props.history.push('/dashboard')
 

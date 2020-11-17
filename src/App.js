@@ -71,8 +71,8 @@ fetchUserData = (id) => {
     .then(response => response.json())
     .then(data => 
       this.setState({
-      userCalendars: data.calendars
-      
+      userCalendars: data.calendars,
+      currentUser: data
     }, 
     ()  => {
       if (this.state.userCalendars.length)
@@ -189,7 +189,8 @@ handleAddCalendar = (calendar) => {
 
 
 componentDidMount() {
- 
+  const info = TokenServices.getAuthInfo(); 
+  if (info) this.fetchUserData(info.userId)
 
   
 }

@@ -2,11 +2,13 @@ import config from '../config'
 
 
 const TokenService = {
-  saveAuthToken(token) {
-    window.localStorage.setItem(config.TOKEN_KEY, token)
+  saveAuthToken(token, userId) {
+    window.localStorage.setItem(config.TOKEN_KEY, JSON.stringify({token, userId}))
   },
   getAuthToken() {
-    return window.localStorage.getItem(config.TOKEN_KEY)
+
+    const info = this.getAuthInfo()
+    return info ? info.token : null
   },
   clearAuthToken() {
     window.localStorage.removeItem(config.TOKEN_KEY)
@@ -14,8 +16,8 @@ const TokenService = {
   hasAuthToken() {
     return !!TokenService.getAuthToken()
   },
-  makeBasicAuthToken(email, password) {
-    return window.btoa(`${email}:${password}`)
+  getAuthInfo() {
+    return JSON.parse(window.localStorage.getItem(config.TOKEN_KEY))
   },
 }
 

@@ -48,12 +48,19 @@ export default class EventDetails extends React.Component {
     deleteEvent(eventId) {
         // this.context.addEvent({...event})
         deleteEventFromApi(eventId)
-        
+        .then((r) => {
+            if (!r.ok) throw Error(r.status);
+            return true;
+         })
         .then(event => {
             this.context.deleteEvent(eventId)
             this.props.history.push(`/dashboard`)
         })
-        // .catch(() => alert("Couldn't delete, sorry"))
+        .catch((e) => {
+            if (e.message == 403) alert("Only the owner can delete the event.")
+           else alert("An error has occurred, couldn't delete event.")
+           console.log(e)
+         })
     }
 
     formSubmitted = e => { 
