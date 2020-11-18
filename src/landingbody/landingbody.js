@@ -2,6 +2,9 @@ import React from 'react'
 import { NavLink, Link } from 'react-router-dom'
 import './landingbody.css'
 import image1 from './images/screenshot-placeholder.gif'
+import calendarImg from './images/calendar-screen.png'
+import memberImg from './images/addmember-screen.png'
+import eventImg from './images/addevent-screen.png'
 
 export default class LandingBody extends React.Component {
     render() {
@@ -9,7 +12,7 @@ export default class LandingBody extends React.Component {
             <div className='landingbody'>
                 <div className='landinggroup group1'>
                         <div className='item'>
-                            <img src={image1} alt="placeholder image" className="landing-img"/>
+                            <img src={calendarImg} alt="placeholder image" className="landing-img"/>
                         </div>
                         
                         <div className='item'>
@@ -22,51 +25,39 @@ export default class LandingBody extends React.Component {
                 </div>
                 <div className='landinggroup3 group2'>
                         <div className='item'>
-                            <h3>Create an Office Wide Calendar</h3>
-                            <p>The modern office is a busy office. As your company grows, you add more and more moving parts, and important dates start slipping through the cracks. 
-                                Get your entire team on the same page with EasyCal. No more missed deadlines. No more missed meetings. 
+                            <h3>Add Team Members with Ease</h3>
+                            <p>
+                                Many companies have to much going on to have everyone on a single calendar. Whether you want to divide it by branch, department, or project, EasyCal has you covered. Add team members to 
+                                specific calendars to make sure they see what matters without cluttering their screen. They can even make their 
+                                own calendars for smaller projects.  
                             </p>
                         </div>
                         
                         <div className='item block2'>
-                            <img src={image1} alt="placeholder image" className="landing-img"/>
+                            <img src={memberImg} alt="placeholder image" className="landing-img"/>
                         </div>
                         
                         
                         
                 </div>
 
-                <div className='landinggroup group1'>
+                <div className='landinggroup group1 lastgroup'>
                         <div className='item'>
-                            <img src={image1} alt="placeholder image" className="landing-img"/>
+                            <img src={eventImg} alt="placeholder image" className="landing-img"/>
                         </div>
                         
                         <div className='item'>
-                            <h3>Create an Office Wide Calendar</h3>
-                            <p>The modern office is a busy office. As your company grows, you add more and more moving parts, and important dates start slipping through the cracks. 
-                                Get your entire team on the same page with EasyCal. No more missed deadlines. No more missed meetings. 
+                            <h3>Create Events and Invite Members</h3>
+                            <p>Events and deadlines are what EasyCal is all about. With our simple to use database, you can add specific members to 
+                                each event, making sure everyone knows exactly where they need to be.  
                             </p>
                         </div>
                         
-                </div>
+               
 
-                <div className='landinggroup2 group2'>
-                        <div className='item'>
-                            <ul>
-                                <h3>Additional Features</h3>
-                                <li>Feature 1</li>
-                                <li>Feature 2</li>
-                                <li>Feature 3</li>
-                                <li>Feature 4</li>
-                            </ul>
-                            
-
-                        </div>
+                
                         
-                        <div className='item '>
-                            <h3>Create Your EasyCal Today</h3>
-                            <button>Sign Up</button>
-                        </div>
+                        
                         
                         
                         

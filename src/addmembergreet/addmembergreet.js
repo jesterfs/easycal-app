@@ -100,7 +100,7 @@ export default class AddMemberGreet extends React.Component {
                                     </select> 
                             </div>
 
-                            <button type='submit'>Send Invite</button>
+                            <button className='addbtn' type='submit'>Send Invite</button>
                         </form>
                     </div>
                     

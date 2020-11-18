@@ -22,8 +22,8 @@ class CalendarDay extends Component {
    
     return (
         
-        <button key={this.props.moment} style={this.props.style}>
-            <time dateTime={this.props.moment.format('YYYY-MM-DD')}>
+        <button className='calendarSquare' key={this.props.moment} style={this.props.style}>
+            <time className='dateNumber' dateTime={this.props.moment.format('YYYY-MM-DD')}>
                 {this.props.moment.format('DD')}
             </time>
             <ul>
@@ -31,7 +31,7 @@ class CalendarDay extends Component {
                      
                          <li  key={e.id}>
                         
-                        <Link  id={e.id} onClick={this.handleClick} to={`events/${e.id}`} >
+                        <Link  id={e.id} className='eventLink' onClick={this.handleClick} to={`events/${e.id}`} >
                             {e.name}
                         </Link>
                             <hr></hr>

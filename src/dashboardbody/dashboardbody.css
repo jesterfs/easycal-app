@@ -31,9 +31,32 @@
     max-height: 5%;
     background-color: black;
     color: white;
-   
+    
+
 }
 
 .monthName {
     text-align: center;
+}
+
+.eventLink {
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: none;
+}
+
+.eventLink:visited {
+    color: black;
+}
+
+.calendarSquare {
+    background-color: #B8B8B8;
+    border: 1px;
+    border-color: black;
+    border-style: solid;
+    position: relative;
+}
+
+.dateNumber {
+    position: absolute;
+    top: 2px;
 }

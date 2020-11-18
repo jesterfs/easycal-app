@@ -1,6 +1,11 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&family=Pacifico&display=swap');
+
+
 .group {
-    background-color: black;
+    background-color: #0B4F6C;
     color: white;
+    font-family: 'Pacifico', cursive;
 }
 
 .group {
@@ -26,4 +31,33 @@
      flex: 1;
      margin: 10px;
      
+   }
+
+   .navbtndiv {
+     position: relative;
+   }
+
+   .navbtn {
+     position: absolute;
+     bottom: 0;
+     background-color: #0B4F6C ;
+     color: white;
+     border: 0;
+     outline: none;
+     font-family: 'Montserrat', sans-serif;
+   }
+
+   .navbtn:active {
+     border: 0;
+     outline: none;
+     color: black;
+   }
+
+   link {
+     text-decoration: none;
+     color: white;
+   }
+
+   link:visited {
+     color: white;
    }

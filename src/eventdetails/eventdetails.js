@@ -74,7 +74,7 @@ export default class EventDetails extends React.Component {
     render() {
         const eventId = this.props.match.params.eventId
 
-        // findEvent(eventId)
+        this.context.changeEvent(eventId)
 
         
         const event = this.context.currentEvent
@@ -92,7 +92,7 @@ export default class EventDetails extends React.Component {
             
             <div className='eventDetails, greetgroup'>
                 
-               <h1>{event.name}</h1> 
+               <h2>{event.name}</h2> 
                <ul>
                <li className='detailsLi'>Date: {event.startTime.slice(0, 10)}</li>
                    <li className='detailsLi'>Start Time: {event.startingTime}</li>
@@ -106,8 +106,8 @@ export default class EventDetails extends React.Component {
                        </ul>
                        
                     </li>
-                    <button className='detailsBtn'><Link to={`/editevent/${eventId}`} > Edit Event</Link></button>
-                    <button className='detailsBtn' onClick={this.formSubmitted}>Delete Event</button>
+                    <Link to={`/editevent/${eventId}`}><button className='detailsBtn addbtn'>Edit Event</button></Link>
+                    <button className='detailsBtn addbtn' onClick={this.formSubmitted}>Delete Event</button>
 
                    
                 </ul>

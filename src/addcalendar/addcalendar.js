@@ -80,7 +80,7 @@ export default class AddEventGreet extends React.Component {
         return(
             <div className='AddCalendarGreet, greetgroup'>
                     <div className='item'>
-                        <h2>Add an Event</h2>
+                        <h2>Add a Calendar</h2>
                     </div>
                     
                     <div className='item'>
@@ -89,12 +89,12 @@ export default class AddEventGreet extends React.Component {
                         >
                 
                             <div>
-                                <label htmlFor="calendarName">Event Name</label>
+                                <label htmlFor="calendarName">Calendar Name</label>
                                 <input type="text" name='calendarName' id='calendarName' placeholder='Calendar Name' />
                             </div>
                             
 
-                            <button type='submit'>Create Calendar</button>
+                            <button type='submit' className='addbtn'>Create Calendar</button>
                         </form>
                     </div>
                     

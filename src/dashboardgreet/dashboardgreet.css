@@ -1,6 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Montserrat&family=Pacifico&display=swap');
+
 .greetgroup {
     background-color: white;
     color: black;
+    
 }
 
 .greetgroup {
@@ -9,6 +12,7 @@
     margin-bottom: 0px;
     justify-content: space-between;
     text-align: center;
+    
    }
    
    @media all and (min-width: 800px) {
@@ -28,10 +32,31 @@
 
    .dashboardbtn {
        margin: 10px;
+       border: 0;
+       
    }
 
    .addButtons {
      display: flex;
      flex-direction: row;
      justify-content: center;
+     font-family: 'Merriweather', serif;
+    
+    outline: none;
+
+    
+   }
+
+   
+
+    h3, h2 {
+    font-family: 'Montserrat', sans-serif;
+   }
+
+   .addbtn {
+     border: none;
+     background-color: #0B4F6C;
+     color: white;
+     font-family: 'Montserrat', sans-serif;
+     
    }

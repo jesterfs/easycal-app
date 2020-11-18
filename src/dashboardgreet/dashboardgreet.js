@@ -40,7 +40,7 @@ export default class DashboardGreet extends React.Component {
                                         {calendar.name}
                                     </option>)}
                             </select>
-                            <input type='submit' htmlFor='selectCalendarForm'></input>
+                            <input className='addbtn' type='submit' htmlFor='selectCalendarForm'></input>
                         </form>
                     </div>
                     <div className='item'>
@@ -49,15 +49,15 @@ export default class DashboardGreet extends React.Component {
                     <div className='addButtons'>
                         
                         <div className='item, dashboardbtn'>
-                            <Link to='/addcalendar'><button>Add A Calendar</button></Link>
+                            <Link to='/addcalendar'><button className='addbtn'>Add A Calendar</button></Link>
                             
                         </div>
                         <div className='item, dashboardbtn'>
-                            <Link to='/addevent'><button>Add An Event</button></Link>
+                            <Link to='/addevent'><button className='addbtn'>Add An Event</button></Link>
                             
                         </div>
                         <div className='item, dashboardbtn'>
-                            <Link to='/addmember'><button>Add A Team Member</button></Link>
+                            <Link to='/addmember'><button className='addbtn'>Add A Team Member</button></Link>
                             
                         </div>
                     </div>

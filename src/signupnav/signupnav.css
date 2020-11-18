@@ -27,3 +27,22 @@
      margin: 10px;
      
    }
+
+   .navbtndiv {
+    position: relative;
+  }
+
+  .navbtn {
+    position: absolute;
+    bottom: 0;
+    background-color: #0B4F6C ;
+    color: white;
+    border: 0;
+    outline: none;
+  }
+
+  .navbtn:active {
+    border: 0;
+    outline: none;
+    color: black;
+  }

@@ -24,9 +24,11 @@ export default class AccountGreet extends React.Component {
 
 
     render() {
+
+        
         
         return(
-            <div className='AccountGreet, greetgroup'>
+            <div className='accountgreetgroup '>
                     <div className='item'>
                         <h2>Hi {this.context.currentUser.name}!</h2>
                     </div>
@@ -43,10 +45,10 @@ export default class AccountGreet extends React.Component {
                                 </ul>    
                             </div>
                             <div className='accountBtn'>
-                                <Link to='/changepassword'><button>Change Your Password</button></Link>
+                                <Link to='/changepassword'><button className='addbtn'>Change Your Password</button></Link>
                                 
                             </div>
-                            <div><button className='accountBtn' onClick={this.handleLogOut}>Log Out</button></div>
+                            <div><button className='accountBtn addbtn' onClick={this.handleLogOut}>Log Out</button></div>
                         
                     </div>
                     

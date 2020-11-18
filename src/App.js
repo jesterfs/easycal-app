@@ -25,6 +25,7 @@ import cfg from './config.js'
 import moment from 'moment';
 import {fromApi} from './diplomat.js';
 import TokenServices from './services/token-services';
+import './app.css';
 
 class App extends Component {
 

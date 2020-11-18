@@ -1,7 +1,7 @@
 
 
 .group1 {
-    background-color: black;
+    background-color: #666666;
     color: white;
 }
 
@@ -18,6 +18,7 @@
     margin-bottom: 0px;
     justify-content: space-between;
     /* text-align: center; */
+    
    }
 
 .landinggroup2 {
@@ -89,4 +90,11 @@ ul {
 
 img {
     width: 100%;
+    border: 1px;
+    border-style: solid;
+    border-color: black;
+}
+
+.lastgroup {
+    padding-bottom: 70px;
 }
