@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders the UI as expected 1`] = `
+<div
+  className="footergroup"
+>
+  <div
+    className="item"
+  >
+    <p>
+      Copyright 2020 by Franklin Stewart Jester
+    </p>
+  </div>
+</div>
+`;

@@ -1,12 +1,11 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import './addmembergreet.css'
 import ApiContext from '../ApiContext.js'
 import cfg from '../config.js'
 import TokenServices from '../services/token-services';
 
 function addMemberToApi(member) {
-    console.log(member)
+    
     return fetch(cfg.API_ENDPOINT + 'members', {
         method: 'POST', 
         body: JSON.stringify(member),
@@ -16,8 +15,6 @@ function addMemberToApi(member) {
     })
 
     .then(r => r.json())
-    .then(console.log('success!'))
-    .then(() => console.log('success!'))
 
 }
 
@@ -31,12 +28,12 @@ export default class AddMemberGreet extends React.Component {
         // this.context.addEvent({...event})
         addMemberToApi(member)
         .then(member => {
-            console.log(member)
+            
             this.context.addMember(member)
             this.props.history.push(`/dashboard`)
         })
         .catch((e) =>  {
-            console.log(e)
+            
             alert("Couldn't add member, sorry")
 
     })

@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './dashboardnav.css'
 
 export default class DashboardNav extends React.Component {

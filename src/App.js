@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Route, Link} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import LandingNav from './landingnav/landingnav';
 import LandingGreet from './landinggreet/landinggreet';
 import LandingBody from './landingbody/landingbody';
@@ -23,7 +23,6 @@ import ApiContext from './ApiContext';
 import EventDetails from './eventdetails/eventdetails'
 import cfg from './config.js'
 import moment from 'moment';
-import {fromApi} from './diplomat.js';
 import TokenServices from './services/token-services';
 import './app.css';
 
@@ -40,53 +39,27 @@ class App extends Component {
     
 };
 
-// setCalendars = userCalendars => {
-//   this.setState({
-//     userCalendars
-    
-//   })
-// }
+//User Functions====================================
 
-clearUserData = () => {
-  this.setState({
-    members: [],
-    events: [],
-    currentUser: null,
-    userCalendars: [],
-    currentCalendar: [],
-    currentEvent: null,
-    currentEventOwner: null
-  })
-}
+  handleAddMember = (member) => {
+    this.setState({members: [...this.state.members, member]})
+    this.handleChangeCalendar(this.state.currentCalendar.id)
+  }
 
-fetchUserData = (id) => {
-  console.log(id)
-  fetch(cfg.API_ENDPOINT + `members/${id}`, {
-    method: 'GET', 
-    headers: {
-      'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-      'Content-Type': 'application/json',
-    }
-    
-  })
-    .then(response => response.json())
-    .then(data => 
-      this.setState({
-      userCalendars: data.calendars,
-      currentUser: data
-    }, 
-    ()  => {
-      if (this.state.userCalendars.length)
-         this.handleChangeCalendar(this.state.userCalendars[0].id)
-    }
-  ))
-    
+  clearUserData = () => {
+    this.setState({
+      members: [],
+      events: [],
+      currentUser: null,
+      userCalendars: [],
+      currentCalendar: [],
+      currentEvent: null,
+      currentEventOwner: null
+    })
+  }
 
-}
-
-handleChangeCalendar = (calendarId) => {
-
-  fetch(cfg.API_ENDPOINT + `calendars/${calendarId}`, {
+  fetchUserData = (id) => {
+    fetch(cfg.API_ENDPOINT + `members/${id}`, {
       method: 'GET', 
       headers: {
         'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
@@ -97,104 +70,101 @@ handleChangeCalendar = (calendarId) => {
       .then(response => response.json())
       .then(data => 
         this.setState({
-        currentCalendar: data,
-        members: data.members
-      },
-        this.setEvents(data.events)
-      )
-        
-      )
-      
+        userCalendars: data.calendars,
+        currentUser: data
+      }, 
+      ()  => {
+        if (this.state.userCalendars.length)
+          this.handleChangeCalendar(this.state.userCalendars[0].id)
       }
-
-
-
-setEvents = (events) => {
-  if(events) {
-    this.setState({events: events.map((event) => ({...event, start: moment(event.start), end: moment(event.end)}))})
+    ))
   }
-}
+
+  isLoggedIn = () => !!this.state.currentUser;
+
+  handleChangeUser = (user) => {
+    this.setState({currentUser: user })
+  }
+
+  //Calendar Functions =========================================
+
+  handleChangeCalendar = (calendarId) => {
+
+    fetch(cfg.API_ENDPOINT + `calendars/${calendarId}`, {
+        method: 'GET', 
+        headers: {
+          'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+          'Content-Type': 'application/json',
+        }
+        
+      })
+        .then(response => response.json())
+        .then(data => 
+          this.setState({
+          currentCalendar: data,
+          members: data.members
+        },
+          this.setEvents(data.events)
+        )        
+        )      
+        }
+
+  handleAddCalendar = (calendar) => {
+    this.setState({userCalendars: [...this.state.userCalendars, calendar] })
+    this.handleChangeCalendar(calendar.id)
+  }
+
+  //Event Functions====================================== 
+  setEvents = (events) => {
+    if(events) {
+      this.setState({events: events.map((event) => ({...event, start: moment(event.start), end: moment(event.end)}))})
+    }
+  }
 
 
-handleChangeEvent = (eventId) => {
-
-  return fetch(cfg.API_ENDPOINT + 'events' + '/' + eventId, {
-    method: 'GET', 
-    headers: {
-        'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-       'Content-type': 'application/json' }
-
-})
-
-    .then(r => r.json())
-    .then(r => 
-      this.setState({currentEvent: r}))
-  
-}
-
-// fetchEventOwner = (ownerId) => {
-//   return fetch(cfg.API_ENDPOINT + 'members' + '/' + ownerId, {
-//     method: 'GET', 
-//     headers: {
-//         'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-//        'Content-type': 'application/json' }
-
-// })
-
-//     .then(r => r.json())
-//     .then(r => 
-//       this.setState({currentEventOwner: r}))
-// }
-
-isLoggedIn = () => !!this.state.currentUser;
-
-handleChangeUser = (user) => {
-  this.setState({currentUser: user })
-  
-}
-
-handleDeleteEvent = (eventId) => {
-  console.log(eventId, this.state.events)
-  this.setState({
-      events: this.state.events.filter(event => event.id != eventId)
-      
-  });
-};
-
-handleAddEvent = (event) => {
-  console.log(this.state.members)
-  this.setState({events: [...this.state.events, event] })
-  // console.log(this.state.members)
-}
-
-handleUpdateEvent = updatedEvent => {
-  const newEvents = this.state.events.map(event =>
-    (event.id === updatedEvent.id)
-      ? updatedEvent
-      : event
-  )
-  this.setState({
-    events: newEvents
+  handleChangeEvent = (eventId) => {
+    return fetch(cfg.API_ENDPOINT + 'events/' + eventId, {
+      method: 'GET', 
+      headers: {
+          'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+        'Content-type': 'application/json' }
   })
-};
-
-handleAddMember = (member) => {
-  this.setState({members: [...this.state.members, member]})
-  this.handleChangeCalendar(this.state.currentCalendar.id)
-}
-
-handleAddCalendar = (calendar) => {
-  this.setState({userCalendars: [...this.state.userCalendars, calendar] })
-  this.handleChangeCalendar(calendar.id)
-}
+      .then(r => r.json())
+      .then(r => 
+        this.setState({currentEvent: r}))    
+  }
 
 
-componentDidMount() {
-  const info = TokenServices.getAuthInfo(); 
-  if (info) this.fetchUserData(info.userId)
+  handleDeleteEvent = (eventId) => {  
+    this.setState({
+        events: this.state.events.filter(event => event.id !== eventId)       
+    });
+  };
 
-  
-}
+  handleAddEvent = (event) => {   
+    this.setState({events: [...this.state.events, event] })    
+  }
+
+  handleUpdateEvent = updatedEvent => {
+    const newEvents = this.state.events.map(event =>
+      (event.id === updatedEvent.id)
+        ? updatedEvent
+        : event
+    )
+    this.setState({
+      events: newEvents
+    })
+  };
+
+
+
+
+
+
+  componentDidMount() {
+    const info = TokenServices.getAuthInfo(); 
+    if (info) this.fetchUserData(info.userId)    
+  }
 
   renderNavRoutes() {
     return(

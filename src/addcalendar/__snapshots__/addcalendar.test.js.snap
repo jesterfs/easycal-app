@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddCalendar component renders the UI as expected 1`] = `
+<div
+  className="AddCalendarGreet, greetgroup"
+>
+  <div
+    className="item"
+  >
+    <h2>
+      Add a Calendar
+    </h2>
+  </div>
+  <div
+    className="item"
+  >
+    <form
+      className="add-calendar-form"
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          htmlFor="calendarName"
+        >
+          Calendar Name
+        </label>
+        <input
+          id="calendarName"
+          name="calendarName"
+          placeholder="Calendar Name"
+          type="text"
+        />
+      </div>
+      <button
+        className="addbtn"
+        type="submit"
+      >
+        Create Calendar
+      </button>
+    </form>
+  </div>
+</div>
+`;

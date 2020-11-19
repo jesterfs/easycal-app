@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import './logingreet.css'
 import ApiContext from '../ApiContext'
 import cfg from '../config.js'
@@ -38,11 +37,11 @@ export default class LoginGreet extends React.Component {
         .then(r => {
 
 
-            console.log(r)
+            
             this.context.changeUser(r.member)
             this.context.fetchUserData(r.member.id)
             TokenServices.saveAuthToken(r.token, r.member.id)
-            console.log(r)
+            
             this.props.history.push('/dashboard')
 
 

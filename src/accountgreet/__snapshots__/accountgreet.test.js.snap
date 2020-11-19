@@ -1,0 +1,68 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountGreet component renders the UI as expected 1`] = `
+<div
+  className="accountgreetgroup "
+>
+  <div
+    className="item"
+  >
+    <h2>
+      Hi 
+      !
+    </h2>
+  </div>
+  <div
+    className="item"
+  >
+    <div
+      className="accountLine"
+    >
+      <h3>
+        Full Name:
+      </h3>
+       
+       
+    </div>
+    <div
+      className="accountLine"
+    >
+      <h3>
+        Email:
+      </h3>
+       
+       
+    </div>
+    <div
+      className="accountLine"
+    >
+      <h3>
+        Calendars: 
+      </h3>
+      <ul />
+    </div>
+    <div
+      className="accountBtn"
+    >
+      <a
+        href="/changepassword"
+        onClick={[Function]}
+      >
+        <button
+          className="addbtn"
+        >
+          Change Your Password
+        </button>
+      </a>
+    </div>
+    <div>
+      <button
+        className="accountBtn addbtn"
+        onClick={[Function]}
+      >
+        Log Out
+      </button>
+    </div>
+  </div>
+</div>
+`;

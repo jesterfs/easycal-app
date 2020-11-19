@@ -1,7 +1,7 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+
 import './landingbody.css'
-import image1 from './images/screenshot-placeholder.gif'
+
 import calendarImg from './images/calendar-screen.png'
 import memberImg from './images/addmember-screen.png'
 import eventImg from './images/addevent-screen.png'
@@ -12,7 +12,7 @@ export default class LandingBody extends React.Component {
             <div className='landingbody'>
                 <div className='landinggroup group1'>
                         <div className='item'>
-                            <img src={calendarImg} alt="placeholder image" className="landing-img"/>
+                            <img src={calendarImg} alt="An easycal calendar that reads 'Welcome, John Doe' and 'your business calendar'" className="landing-img"/>
                         </div>
                         
                         <div className='item'>
@@ -34,7 +34,7 @@ export default class LandingBody extends React.Component {
                         </div>
                         
                         <div className='item block2'>
-                            <img src={memberImg} alt="placeholder image" className="landing-img"/>
+                            <img src={memberImg} alt="The easycal add team member interface" className="landing-img"/>
                         </div>
                         
                         
@@ -43,7 +43,7 @@ export default class LandingBody extends React.Component {
 
                 <div className='landinggroup group1 lastgroup'>
                         <div className='item'>
-                            <img src={eventImg} alt="placeholder image" className="landing-img"/>
+                            <img src={eventImg} alt="The easycal add event interface" className="landing-img"/>
                         </div>
                         
                         <div className='item'>

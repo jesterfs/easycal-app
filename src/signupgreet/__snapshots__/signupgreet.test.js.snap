@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SignupGreet component renders the UI as expected 1`] = `
+<div
+  className="SignUpGreet, greetgroup"
+>
+  <div
+    className="item"
+  >
+    <h2>
+      Create Your EasyCal Account
+    </h2>
+  </div>
+  <div
+    className="item"
+  >
+    <form
+      className="signup-form"
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          htmlFor="signupName"
+        >
+          Full Name
+        </label>
+        <input
+          id="signupName"
+          name="signupName"
+          placeholder="Full Name"
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="signupEmail"
+        >
+          Email
+        </label>
+        <input
+          id="signupEmail"
+          name="signupEmail"
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="signupPassword"
+        >
+          Password
+        </label>
+        <input
+          id="signupPassword"
+          name="signupPassword"
+          type="password"
+        />
+      </div>
+      <button
+        type="submit"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>
+`;

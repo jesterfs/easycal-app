@@ -8,7 +8,7 @@ import {fromApi} from '../diplomat.js'
 import TokenServices from '../services/token-services';
 
 function updateEventOnApi(event, eventId) {
-    console.log(event)
+    
     return fetch(cfg.API_ENDPOINT + 'events/' + eventId, {
         method: 'PATCH', 
         body: JSON.stringify(event),
@@ -50,13 +50,13 @@ export default class EditEventGreet extends React.Component {
         const eventId = this.props.match.params.eventId
         updateEventOnApi(event, eventId)
         .then(updatedEvent => {
-            console.log(updatedEvent, fromApi(updatedEvent))
+            
             this.context.changeEvent(eventId)
             this.context.updateEvent(fromApi(updatedEvent))
             this.props.history.push(`/events/${eventId}`)
         })
         .catch((e) =>  {
-            console.log(e)
+            
             alert("Couldn't update event, sorry")
 
     })
@@ -94,18 +94,8 @@ export default class EditEventGreet extends React.Component {
           inviteIds
         }
 
-        // const updatedEvent = {
-        //     id: this.props.match.params.eventId,
-        //     name: e.currentTarget.eventName.value ,
-        //     start_time, 
-        //     end_time, 
-        //     owner_id,
-        //     calendar_id,
-        //     inviteIds
-        // }
-
         
-        console.log(inviteIds)
+        
         this.updateEvent(event)
         }
     }

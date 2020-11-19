@@ -1,10 +1,8 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import './signupgreet.css'
 import ApiContext from '../ApiContext.js'
 import cfg from '../config.js'
 import TokenServices from '../services/token-services'
-var generator = require('generate-password');
 
 
 
@@ -29,7 +27,7 @@ export default class SignUpGreet extends React.Component {
         .then(r => r.json())
         .then(data => this.addMember(data.member, data.token))
         .catch((e) =>  {
-                    console.log(e)
+                    
                     alert("Couldn't add member, sorry")    
             }) 
     
@@ -37,8 +35,7 @@ export default class SignUpGreet extends React.Component {
 
     addMember(member, token) {
         
-                    console.log(member)
-                    console.log(token)
+                    
                     // this.context.addMember(member)
                     this.context.changeUser(member)
                     this.context.fetchUserData(member.id)

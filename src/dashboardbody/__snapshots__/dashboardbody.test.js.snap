@@ -1,0 +1,350 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardBody component renders the UI as expected 1`] = `
+<div>
+  <h3
+    className="monthName"
+  >
+    November
+  </h3>
+  <div
+    className="date-grid"
+  >
+    <button
+      className="calendarSquare"
+      style={
+        Object {
+          "gridColumn": 0,
+        }
+      }
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-01"
+      >
+        01
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-02"
+      >
+        02
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-03"
+      >
+        03
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-04"
+      >
+        04
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-05"
+      >
+        05
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-06"
+      >
+        06
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-07"
+      >
+        07
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-08"
+      >
+        08
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-09"
+      >
+        09
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-10"
+      >
+        10
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-11"
+      >
+        11
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-12"
+      >
+        12
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-13"
+      >
+        13
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-14"
+      >
+        14
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-15"
+      >
+        15
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-16"
+      >
+        16
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-17"
+      >
+        17
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-18"
+      >
+        18
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-19"
+      >
+        19
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-20"
+      >
+        20
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-21"
+      >
+        21
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-22"
+      >
+        22
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-23"
+      >
+        23
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-24"
+      >
+        24
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-25"
+      >
+        25
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-26"
+      >
+        26
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-27"
+      >
+        27
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-28"
+      >
+        28
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-29"
+      >
+        29
+      </time>
+      <ul />
+    </button>
+    <button
+      className="calendarSquare"
+    >
+      <time
+        className="dateNumber"
+        dateTime="2020-11-30"
+      >
+        30
+      </time>
+      <ul />
+    </button>
+  </div>
+</div>
+`;

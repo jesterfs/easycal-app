@@ -1,5 +1,5 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+
 import ApiContext from '../ApiContext.js'
 import './dashboardbody.css'
 import CalendarDay from './calendarday'
@@ -13,16 +13,14 @@ export default class DashboardBody extends React.Component {
     eventsFor = (date) => {
         
         const eventList = this.context.events
-        // if (eventList.length) {
-        //     console.log(eventList[0].start.isSame(date, 'day'))
-        //  }
+       
         
         
         const x = eventList.filter(
-        //    => 
+       
           event => event.start.isSame(date, 'day')
           );
-        //   console.log(x)
+        
           return x
       }
 
@@ -38,12 +36,12 @@ export default class DashboardBody extends React.Component {
         const now = moment();
         const year = now.year();
         const month = now.month();
-        const day = now.day();
-        // const firstDayOfMonth = firstDayOfMonth()
+        
+        
 
         const start = moment([year, month , 1]);
         
-        // moment().endOf('month').from(start);
+       
         
         const days = start.daysInMonth()
         

@@ -1,5 +1,4 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
 import './addeventgreet.css'
 import ApiContext from '../ApiContext.js'
 import moment from 'moment'
@@ -10,7 +9,7 @@ import TokenServices from '../services/token-services';
 
 
 function addEventToApi(event) {
-    console.log(event)
+    
     return fetch(cfg.API_ENDPOINT + 'events', {
         method: 'POST', 
         body: JSON.stringify(event),
@@ -57,7 +56,7 @@ export default class AddEventGreet extends React.Component {
             this.props.history.push(`/dashboard`)
         })
         .catch((e) =>  {
-            console.log(e)
+            
             alert("Couldn't add event, sorry")
 
     })
@@ -93,7 +92,7 @@ export default class AddEventGreet extends React.Component {
         }
 
         
-        console.log(inviteIds)
+        
         this.addEvent(event)
       }
 

@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LandingNav component renders the UI as expected 1`] = `
+<div
+  className="LandingNav, group"
+>
+  <div
+    className="item signupbtn navbtndiv"
+  >
+    <a
+      href="/signup"
+      onClick={[Function]}
+    >
+      <button
+        className="navbtn"
+      >
+        Sign Up
+      </button>
+    </a>
+  </div>
+  <div
+    className="item"
+  >
+    <h1>
+      EasyCal
+    </h1>
+  </div>
+  <div
+    className="item navbtndiv"
+  >
+    <a
+      href="/login"
+      onClick={[Function]}
+    >
+      <button
+        className="navbtn"
+      >
+        Log In
+      </button>
+    </a>
+  </div>
+</div>
+`;

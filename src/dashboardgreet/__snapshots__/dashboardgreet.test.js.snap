@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DashboardGreet component renders the UI as expected 1`] = `
+<div
+  className="DashboardGreet, greetgroup"
+>
+  <div
+    className="item"
+  />
+  <div
+    className="item"
+  >
+    <form
+      id="selectCalendarForm"
+      onSubmit={[Function]}
+    >
+      <select
+        htmlFor="selectCalendarForm"
+        name="calendar"
+      >
+        <option>
+          select a calendar
+        </option>
+      </select>
+      <input
+        className="addbtn"
+        htmlFor="selectCalendarForm"
+        type="submit"
+      />
+    </form>
+  </div>
+  <div
+    className="item"
+  >
+    <h3 />
+  </div>
+  <div
+    className="addButtons"
+  >
+    <div
+      className="item, dashboardbtn"
+    >
+      <a
+        href="/addcalendar"
+        onClick={[Function]}
+      >
+        <button
+          className="addbtn"
+        >
+          Add A Calendar
+        </button>
+      </a>
+    </div>
+    <div
+      className="item, dashboardbtn"
+    >
+      <a
+        href="/addevent"
+        onClick={[Function]}
+      >
+        <button
+          className="addbtn"
+        >
+          Add An Event
+        </button>
+      </a>
+    </div>
+    <div
+      className="item, dashboardbtn"
+    >
+      <a
+        href="/addmember"
+        onClick={[Function]}
+      >
+        <button
+          className="addbtn"
+        >
+          Add A Team Member
+        </button>
+      </a>
+    </div>
+  </div>
+</div>
+`;

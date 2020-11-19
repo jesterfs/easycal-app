@@ -1,8 +1,7 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './accountgreet.css'
 import ApiContext from '../ApiContext.js'
-import cfg from '../config.js'
 import TokenService from '../services/token-services'
 
 

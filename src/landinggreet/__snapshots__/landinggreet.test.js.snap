@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LandingGreet component renders the UI as expected 1`] = `
+<div
+  className="LandingGreet, greetgroup"
+>
+  <div
+    className="item"
+  >
+    <h2>
+      Meet EasyCal
+    </h2>
+  </div>
+  <div
+    className="item"
+  >
+    <h3>
+      A scheduling solution for the modern office.
+    </h3>
+  </div>
+  <div>
+    <a
+      href="/signup"
+      onClick={[Function]}
+    >
+      <button>
+        Create an Account
+      </button>
+    </a>
+  </div>
+</div>
+`;

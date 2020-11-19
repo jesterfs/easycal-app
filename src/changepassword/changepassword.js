@@ -16,7 +16,7 @@ function updatePassword(updatedFields, id) {
     })
     
     .then(r => r.json())
-    .then(console.log('success!'))
+    
     
 }
 
@@ -43,10 +43,10 @@ export default class ChangePassword extends React.Component {
             password: password1
         }
         
-        if(password1 != password2) {
+        if(password1 !== password2) {
             return alert('Please make sure passwords match.')
         }
-        console.log(this.context.currentUser.id)
+        
         this.changeMember(updatedFields)
       }
     
@@ -58,14 +58,14 @@ export default class ChangePassword extends React.Component {
                     </div>
                     
                     <div className='item'>
-                        <form class='change-password-form' onSubmit={this.formSubmitted}>
+                        <form className='change-password-form' onSubmit={this.formSubmitted}>
                             
                             <div>
-                                <label for="newpassword">New Password</label>
+                                <label htmlFor="newpassword">New Password</label>
                                 <input type="password" name='newpassword' id='newpassword' />
                             </div>
                             <div>
-                                <label for="newpasswordagain">Confirm Password</label>
+                                <label htmlFor="newpasswordagain">Confirm Password</label>
                                 <input type="password" name='newpassword2' id='newpassword2' />
                             </div>
 

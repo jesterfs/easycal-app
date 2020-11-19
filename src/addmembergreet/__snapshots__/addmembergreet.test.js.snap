@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AddMemberGreet component renders the UI as expected 1`] = `
+<div
+  className="AddMemberGreet, greetgroup"
+>
+  <div
+    className="item"
+  >
+    <h2>
+      Add a Team Member
+    </h2>
+    <p>
+      The invitee will have to finish the sign-up process.
+    </p>
+  </div>
+  <div
+    className="item"
+  >
+    <form
+      className="addMemberForm"
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          htmlFor="memberName"
+        >
+          Full Name
+        </label>
+        <input
+          id="memberName"
+          name="memberName"
+          placeholder="Full Name"
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="memberEmail"
+        >
+          Email
+        </label>
+        <input
+          id="memberEmail"
+          name="memberEmail"
+          placeholder="Email"
+          type="email"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="selectMemberCalendars"
+        >
+          Select Calendars:
+        </label>
+        <br />
+        <select
+          id="selectMemberCalendars"
+          multiple={true}
+          name="selectMemberCalendars"
+        />
+      </div>
+      <button
+        className="addbtn"
+        type="submit"
+      >
+        Send Invite
+      </button>
+    </form>
+  </div>
+</div>
+`;

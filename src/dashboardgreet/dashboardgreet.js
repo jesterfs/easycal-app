@@ -1,22 +1,16 @@
 import React from 'react'
-import { NavLink, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './dashboardgreet.css'
 import ApiContext from '../ApiContext.js'
-import Store from '../store.js'
 
 export default class DashboardGreet extends React.Component {
     static contextType = ApiContext;
 
     formSubmitted = e => { 
         e.preventDefault()
-    
-        
+           
         const calendarId = e.currentTarget.calendar.value 
-        const calendar = this.context.userCalendars.find(calendar => calendar.id == calendarId)
         
-        
-    
-
         this.context.changeCalendar(calendarId)
       }
     

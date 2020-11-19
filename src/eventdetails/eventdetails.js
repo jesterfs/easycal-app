@@ -8,19 +8,6 @@ import cfg from '../config.js'
 import TokenServices from '../services/token-services';
 // import {fromApi} from '../diplomat.js';
 
-// function findEvent(id) {
-    
-//     return fetch(cfg.API_ENDPOINT + 'events/' + id, {
-//         method: 'GET', 
-        
-//         headers: { 
-//             'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-//             'Content-type': 'application/json' }
-//     })
-//     .then(r => r.json())
-//     .then(() => console.log('success!'))
-    
-// }
 
 
 function deleteEventFromApi(eventId) {
@@ -34,7 +21,7 @@ function deleteEventFromApi(eventId) {
     })
 
     .catch((e) => {alert("Couldn't delete") 
-    console.log(e)}
+    }
     )
 }
 
@@ -57,9 +44,9 @@ export default class EventDetails extends React.Component {
             this.props.history.push(`/dashboard`)
         })
         .catch((e) => {
-            if (e.message == 403) alert("Only the owner can delete the event.")
+            if (e.message === 403) alert("Only the owner can delete the event.")
            else alert("An error has occurred, couldn't delete event.")
-           console.log(e)
+           
          })
     }
 
