@@ -17,5 +17,6 @@ export default React.createContext({
     fetchUserData: () => {},
     changeEvent: () => {},
     updateEvent: () => {},
-    clearUser: () => {}
+    clearUser: () => {},
+    setEvents: () => {}
 })

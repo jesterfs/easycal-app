@@ -158,7 +158,8 @@ class App extends Component {
 
   componentDidMount() {
     const info = TokenServices.getAuthInfo(); 
-    if (info) this.fetchUserData(info.userId)    
+    if (info) this.fetchUserData(info.userId)  
+    
   }
 
   renderNavRoutes() {
@@ -237,7 +238,8 @@ class App extends Component {
       fetchUserData: this.fetchUserData,
       changeEvent: this.handleChangeEvent,
       updateEvent: this.handleUpdateEvent,
-      clearUser: this.clearUserData
+      clearUser: this.clearUserData,
+      setEvents: this.setEvents
     }
     return (
       <ApiContext.Provider value={value}>

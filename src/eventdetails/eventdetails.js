@@ -25,6 +25,7 @@ function deleteEventFromApi(eventId) {
 
 
 export default class EventDetails extends React.Component {
+    
     static contextType = ApiContext;
     
     deleteEvent(eventId) {
@@ -35,6 +36,8 @@ export default class EventDetails extends React.Component {
             })
             .then(event => {
                 this.context.deleteEvent(eventId)
+                
+                this.context.setEvents(this.context.events.filter(event => event.id != eventId))
                 this.props.history.push(`/dashboard`)
             })
             .catch((e) => {
@@ -50,23 +53,32 @@ export default class EventDetails extends React.Component {
         this.deleteEvent(eventId)
       }
 
-    render() {
+    componentDidMount() {
         const eventId = this.props.match.params.eventId
         this.context.changeEvent(eventId)
+    }
+
+
+    render() {
+        const eventId = this.props.match.params.eventId
+        
         const event = this.context.currentEvent
+        
         
         if (!event) 
             return (
             <div><h1>Not Found</h1></div>
         )
 
+        
+
         return(
             <div className='eventDetails, greetgroup'>
                <h2>{event.name}</h2> 
                <ul>
-               <li className='detailsLi'>Date: {event.start.format('MM/DD/YYYY')}</li>
-                   <li className='detailsLi'>Start Time: {event.start.format('hh:mm A')}</li>
-                   <li className='detailsLi'>End Time: {event.end.format('hh:mm A')}</li>
+               <li className='detailsLi'>Date: {event.start.format('MM/DD/YYYY') }</li>
+                   <li className='detailsLi'>Start Time: {event.start.format('hh:mm A') }</li>
+                   <li className='detailsLi'>End Time: {event.end.format('hh:mm A') }</li>
                    <li className='detailsLi'>Scheduled By: {event.owner.name}</li> 
                    <li className='detailsLi'>Participants: 
                         <ul>

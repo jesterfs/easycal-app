@@ -18,7 +18,12 @@ export default class DashboardBody extends React.Component {
           return x
       }
 
+    componentDidMount(){
+        
+    }
+
     render() {
+        
         const now = moment();
         const year = now.year();
         const month = now.month();
