@@ -10,21 +10,22 @@ import AddEventGreet from './addeventgreet/addeventgreet';
 import EditEventGreet from './addeventgreet/editeventgreet'
 import AddMemberNav from './addmembernav/addmembernav';
 import AddMemberGreet from './addmembergreet/addmembergreet';
-import SignUpNav from "./signupnav/signupnav";
-import SignUpGreet from "./signupgreet/signupgreet";
-import LoginNav from "./loginnav/loginnav";
-import LoginGreet from "./logingreet/logingreet";
-import AccountGreet from "./accountgreet/accountgreet";
-import AccountNav from "./accountnav/accountnav";
-import AddCalendar from "./addcalendar/addcalendar";
-import ChangePassword from "./changepassword/changepassword";
-import Footer from "./footer/footer";
+import SignUpNav from './signupnav/signupnav';
+import SignUpGreet from './signupgreet/signupgreet';
+import LoginNav from './loginnav/loginnav';
+import LoginGreet from './logingreet/logingreet';
+import AccountGreet from './accountgreet/accountgreet';
+import AccountNav from './accountnav/accountnav';
+import AddCalendar from './addcalendar/addcalendar';
+import ChangePassword from './changepassword/changepassword';
+import Footer from './footer/footer';
 import ApiContext from './ApiContext';
 import EventDetails from './eventdetails/eventdetails'
 import cfg from './config.js'
 import moment from 'moment';
 import TokenServices from './services/token-services';
 import './app.css';
+import {fromApi} from './diplomat'
 
 class App extends Component {
 
@@ -65,19 +66,18 @@ class App extends Component {
         'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
         'Content-Type': 'application/json',
       }
-      
     })
-      .then(response => response.json())
-      .then(data => 
-        this.setState({
-        userCalendars: data.calendars,
-        currentUser: data
-      }, 
-      ()  => {
-        if (this.state.userCalendars.length)
-          this.handleChangeCalendar(this.state.userCalendars[0].id)
-      }
-    ))
+        .then(response => response.json())
+        .then(data => 
+          this.setState({
+            userCalendars: data.calendars,
+            currentUser: data
+          }, 
+          ()  => {
+            if (this.state.userCalendars && this.state.userCalendars.length)
+              this.handleChangeCalendar(this.state.userCalendars[0].id)
+          }
+        ))
   }
 
   isLoggedIn = () => !!this.state.currentUser;
@@ -89,15 +89,13 @@ class App extends Component {
   //Calendar Functions =========================================
 
   handleChangeCalendar = (calendarId) => {
-
     fetch(cfg.API_ENDPOINT + `calendars/${calendarId}`, {
-        method: 'GET', 
-        headers: {
-          'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
-          'Content-Type': 'application/json',
-        }
-        
-      })
+      method: 'GET', 
+      headers: {
+        'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
+        'Content-Type': 'application/json',
+      }  
+    })
         .then(response => response.json())
         .then(data => 
           this.setState({
@@ -105,9 +103,9 @@ class App extends Component {
           members: data.members
         },
           this.setEvents(data.events)
-        )        
-        )      
-        }
+      )        
+      )      
+      }
 
   handleAddCalendar = (calendar) => {
     this.setState({userCalendars: [...this.state.userCalendars, calendar] })
@@ -117,7 +115,7 @@ class App extends Component {
   //Event Functions====================================== 
   setEvents = (events) => {
     if(events) {
-      this.setState({events: events.map((event) => ({...event, start: moment(event.start), end: moment(event.end)}))})
+      this.setState({events: events.map(fromApi)})
     }
   }
 
@@ -129,9 +127,9 @@ class App extends Component {
           'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
         'Content-type': 'application/json' }
   })
-      .then(r => r.json())
-      .then(r => 
-        this.setState({currentEvent: r}))    
+        .then(r => r.json())
+        .then(r => 
+          this.setState({currentEvent: fromApi(r)}))    
   }
 
 
@@ -158,9 +156,6 @@ class App extends Component {
 
 
 
-
-
-
   componentDidMount() {
     const info = TokenServices.getAuthInfo(); 
     if (info) this.fetchUserData(info.userId)    
@@ -169,17 +164,17 @@ class App extends Component {
   renderNavRoutes() {
     return(
       <>
-      <Route exact path="/" component={LandingNav} />
-      <Route path="/dashboard" component={DashboardNav} />
-      <Route path="/signup" component={SignUpNav} />
-      <Route path="/login" component={LoginNav} />
-      <Route path="/addmember" component={AddMemberNav} />
-      <Route path="/addevent" component={AddMemberNav} />
-      <Route path="/events/:eventId" component={AddMemberNav} />
-      <Route path="/editevent/:eventId" component={AddMemberNav} />
-      <Route path="/account" component ={AccountNav} />
-      <Route path="/changepassword" component={AddMemberNav} />
-      <Route path="/addcalendar" component={AddMemberNav} />
+      <Route exact path='/' component={LandingNav} />
+      <Route path='/dashboard' component={DashboardNav} />
+      <Route path='/signup' component={SignUpNav} />
+      <Route path='/login' component={LoginNav} />
+      <Route path='/addmember' component={AddMemberNav} />
+      <Route path='/addevent' component={AddMemberNav} />
+      <Route path='/events/:eventId' component={AddMemberNav} />
+      <Route path='/editevent/:eventId' component={AddMemberNav} />
+      <Route path='/account' component ={AccountNav} />
+      <Route path='/changepassword' component={AddMemberNav} />
+      <Route path='/addcalendar' component={AddMemberNav} />
 
       
       </>
@@ -189,17 +184,17 @@ class App extends Component {
   renderGreetingRoutes() {
     return(
       <>
-      <Route exact path="/" component={LandingGreet} />
-      <Route exact path="/dashboard" component={DashboardGreet} />
-      <Route path="/addevent" component={AddEventGreet} />
-      <Route path="/signup" component={SignUpGreet} />
-      <Route path="/login" component={LoginGreet} />
-      <Route path="/addmember" component={AddMemberGreet} />
-      <Route path="/events/:eventId" component ={EventDetails} />
-      <Route path="/editevent/:eventId" component ={EditEventGreet} />
-      <Route path="/account" component ={AccountGreet} />
-      <Route path="/changepassword" component ={ChangePassword} />
-      <Route path="/addcalendar" component ={AddCalendar} />
+      <Route exact path='/' component={LandingGreet} />
+      <Route exact path='/dashboard' component={DashboardGreet} />
+      <Route path='/addevent' component={AddEventGreet} />
+      <Route path='/signup' component={SignUpGreet} />
+      <Route path='/login' component={LoginGreet} />
+      <Route path='/addmember' component={AddMemberGreet} />
+      <Route path='/events/:eventId' component ={EventDetails} />
+      <Route path='/editevent/:eventId' component ={EditEventGreet} />
+      <Route path='/account' component ={AccountGreet} />
+      <Route path='/changepassword' component ={ChangePassword} />
+      <Route path='/addcalendar' component ={AddCalendar} />
       </>
     )
   }
@@ -207,10 +202,8 @@ class App extends Component {
   renderBodyRoutes() {
     return(
       <>
-      <Route exact path="/" component={LandingBody} />
-      <Route exact path="/dashboard" component={DashboardBody} />
-      {/* <Route path="/signup" component={SignUpGreet} />
-      <Route path="/login" component={LoginGreet} /> */}
+      <Route exact path='/' component={LandingBody} />
+      <Route exact path='/dashboard' component={DashboardBody} />
       </>
     )
   }
@@ -218,10 +211,7 @@ class App extends Component {
   renderFooterRoutes() {
     return(
       <>
-      <Route path="/" component={Footer} />
-      {/* <Route path="/dashboard" component={DashboardGreet} />
-      <Route path="/signup" component={SignUpGreet} />
-      <Route path="/login" component={LoginGreet} /> */}
+      <Route path='/' component={Footer} />
       </>
     )
   }
@@ -263,12 +253,9 @@ class App extends Component {
             {this.renderFooterRoutes()}
           </footer>
         </div>
-      </ApiContext.Provider>
-      
-      
+      </ApiContext.Provider> 
     );
-  }
-  
+  } 
 }
 
 export default App;

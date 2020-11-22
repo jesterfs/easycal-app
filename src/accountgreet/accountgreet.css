@@ -1,53 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&family=Montserrat&family=Pacifico&display=swap');
 
-.greetgroup {
-    
-}
 
 .accountgreetgroup {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0px;
-    justify-content: space-between;
-    /* text-align: center; */
-    padding-bottom: 70px;
-    background-color: white;
-    color: black;
-    text-align: center;
-   }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+  justify-content: space-between;
+  padding-bottom: 70px;
+  background-color: white;
+  color: black;
+  text-align: center;
+}
    
-   @media all and (min-width: 800px) {
-     .wrapper {
-       width: 80%;
-       margin: auto;
-     }
+@media all and (min-width: 800px) {
+  .wrapper {
+    width: 80%;
+    margin: auto;
+  }
+
+  
+}
    
-     
-   }
-   
-  .item {
-     flex: 1;
-     margin: 10px;
-     font-family: 'Montserrat', sans-serif;
-   }
+.item {
+  flex: 1;
+  margin: 10px;
+  font-family: 'Montserrat', sans-serif;
+}
   
   
 
-   .formgroup {
-       display: flex;
-       flex-direction: row;
-       justify-content: space-between;
-       width: 25%;
-       margin-left: auto;
-       margin-right: auto;
-   }
+.formgroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-   label {
-       margin: 5px;
-   }
+label {
+  margin: 5px;
+}
 
-   input {
-    margin: 5px;
+input {
+  margin: 5px;
 }
 
 .accountLine  {

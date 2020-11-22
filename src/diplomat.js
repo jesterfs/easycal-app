@@ -7,6 +7,12 @@ export function fromApi(event) {
         delete event.start_time;
         delete event.end_time;
       }
+    if ('startTime' in event) {
+      event.start = event.startTime;
+      event.end = event.endTime
+      delete event.startTime;
+      delete event.endTime;
+    }
     return {
            ...event,
            start: moment(event.start),

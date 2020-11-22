@@ -1,48 +1,45 @@
 .greetgroup {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 .greetgroup {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0px;
-    justify-content: space-between;
-    /* text-align: center; */
-   }
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+  justify-content: space-between;
+  /* text-align: center; */
+}
    
-   @media all and (min-width: 800px) {
-     .wrapper {
-       width: 80%;
-       margin: auto;
-     }
-   
-     
-   }
-   
-  .item {
-     flex: 1;
-     margin: 10px;
-     
-   }
+@media all and (min-width: 800px) {
+  .wrapper {
+    width: 80%;
+    margin: auto;
+  }
+
   
+}
+   
+.item {
+    flex: 1;
+    margin: 10px; 
+}
   
+.formgroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 25%;
+  margin-left: auto;
+  margin-right: auto;
+}
 
-   .formgroup {
-       display: flex;
-       flex-direction: row;
-       justify-content: space-between;
-       width: 25%;
-       margin-left: auto;
-       margin-right: auto;
-   }
+label {
+  margin: 5px;
+}
 
-   label {
-       margin: 5px;
-   }
-
-   input {
-    margin: 5px;
+input {
+  margin: 5px;
 }
 
 .addbtn {
@@ -50,5 +47,4 @@
   background-color: #0B4F6C;
   color: white;
   font-family: 'Montserrat', sans-serif;
-  
 }

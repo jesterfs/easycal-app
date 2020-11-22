@@ -14,40 +14,28 @@ function addCalendarToApi(calendar) {
             'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
             'Content-type': 'application/json' }
     })
-    
-    .then(r => r.json())
-    
+    .then(r => r.json()) 
 }
 
 
 export default class AddEventGreet extends React.Component {
 
-    
-
     static contextType = ApiContext;
-
-    // componentDidMount(){
-    //     // this.setState({availableMembers: [this.context.members]})
-    // }
 
     addCalendar(calendar) {
 
         addCalendarToApi(calendar)
-        .then(calendar => {
-        
-            this.context.addCalendar(calendar)
-            this.props.history.push(`/dashboard`)
-        })
-        .catch((e) =>  {
+            .then(calendar => {
             
-            alert("Couldn't add event, sorry")
+                this.context.addCalendar(calendar)
+                this.props.history.push(`/dashboard`)
+            })
+            .catch((e) =>  {
+                
+                alert(`Couldn't add event, sorry`)
 
-    })
+            })
     }
-
-    
-
-   
 
     formSubmitted = e => { 
         e.preventDefault()
@@ -60,44 +48,26 @@ export default class AddEventGreet extends React.Component {
           owner: this.context.currentUser.id,
           inviteIds: [this.context.currentUser.id]
         }
-
-        
-        
         this.addCalendar(calendar)
       }
 
-
-
     render() {
-
-       
-
-        
-        
-
         return(
             <div className='AddCalendarGreet, greetgroup'>
-                    <div className='item'>
-                        <h2>Add a Calendar</h2>
-                    </div>
-                    
-                    <div className='item'>
-                        <form className='add-calendar-form' onSubmit={this.formSubmitted} 
-                        
-                        >
+                <div className='item'>
+                    <h2>Add a Calendar</h2>
+                </div>
                 
-                            <div>
-                                <label htmlFor="calendarName">Calendar Name</label>
-                                <input type="text" name='calendarName' id='calendarName' placeholder='Calendar Name' />
-                            </div>
-                            
-
-                            <button type='submit' className='addbtn'>Create Calendar</button>
-                        </form>
-                    </div>
-                    
+                <div className='item'>
+                    <form className='add-calendar-form' onSubmit={this.formSubmitted}>
+                        <div>
+                            <label htmlFor='calendarName'>Calendar Name</label>
+                            <input type='text' name='calendarName' id='calendarName' placeholder='Calendar Name' />
+                        </div>
+                        <button type='submit' className='addbtn'>Create Calendar</button>
+                    </form>
+                </div>       
             </div>
-        )
-        
+        )   
     }
 }

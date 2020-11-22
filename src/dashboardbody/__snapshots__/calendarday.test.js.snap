@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CalendarDay component renders the UI as expected 1`] = `
+<button
+  className="calendarSquare"
+>
+  <time
+    className="dateNumber"
+  />
+  <ul>
+    <li>
+      <a
+        className="eventLink"
+        href="/events/1"
+        id={1}
+        onClick={[Function]}
+      >
+        adada
+      </a>
+      <hr />
+    </li>
+  </ul>
+</button>
+`;

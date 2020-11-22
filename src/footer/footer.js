@@ -9,9 +9,7 @@ export default class Footer extends React.Component {
                 <div className='item'>
                     <p>Copyright 2020 by Franklin Stewart Jester</p>
                 </div>
-            </div>
-                
-        )
-        
+            </div>      
+        )  
     }
 }

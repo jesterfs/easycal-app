@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Pacifico&display=swap');
 
 .group {
-    background-color: black;
-    color: white;
+  background-color: black;
+  color: white;
 }
 
 .dashboardNav {
@@ -11,55 +11,52 @@
 }
 
 .group {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 0px;
-    justify-content: space-between;
-    text-align: center;
-   }
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 0px;
+  justify-content: space-between;
+  text-align: center;
+}
 
 .addMemberBtn {
   display: none;
 }
    
-   @media all and (min-width: 800px) {
-     .wrapper {
-       width: 80%;
-       margin: auto;
-     }
+@media all and (min-width: 800px) {
+  .wrapper {
+    width: 80%;
+    margin: auto;
+  }
+
+  .group {
+    flex-direction: row;
+  }
+
+  .addMemberBtn {
+    display: inline;
+  }
+}
    
-     .group {
-       flex-direction: row;
-     }
+.item {
+  flex: 1;
+  margin: 10px;
+}
 
-     .addMemberBtn {
-       display: inline;
-     }
+.navbtndiv {
+  position: relative;
+}
 
+.navbtn {
+  position: absolute;
+  bottom: 0;
+  background-color: #0B4F6C ;
+  color: white;
+  border: 0;
+  outline: none;
+}
 
-   }
-   
-   .item {
-     flex: 1;
-     margin: 10px;
-     
-   }
-
-   .navbtndiv {
-    position: relative;
-  }
-
-  .navbtn {
-    position: absolute;
-    bottom: 0;
-    background-color: #0B4F6C ;
-    color: white;
-    border: 0;
-    outline: none;
-  }
-
-  .navbtn:active {
-    border: 0;
-    outline: none;
-    color: black;
-  }
+.navbtn:active {
+  border: 0;
+  outline: none;
+  color: black;
+}

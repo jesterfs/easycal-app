@@ -17,49 +17,23 @@ function addEventToApi(event) {
             'Authentication' : `Bearer ${TokenServices.getAuthToken()}`,
             'Content-type': 'application/json' }
     })
-    
-    .then(r => r.json())
-    
+        .then(r => r.json())
 }
 
 export default class AddEventGreet extends React.Component {
 
-    state = {
-        availableMembers: [],
-        addedMembers:[]
-    }
-
     static contextType = ApiContext;
 
-    // componentDidMount(){
-    //     // this.setState({availableMembers: [this.context.members]})
-    // }
-
-    addMembers = e => {
-        e.preventDefault()
-
-        const inviteId = e.currentTarget.eventParticipants.value
-        if(!this.state.addedMembers.includes(inviteId)) {
-            this.setState({addedMembers:[...this.state.addedMembers, inviteId]})
-        }
-        
-    }
-
-    
-
     addEvent(event) {
-        // this.context.addEvent({...event})
-        addEventToApi(event)
-        .then(event => {
         
-            this.context.addEvent(fromApi(event))
-            this.props.history.push(`/dashboard`)
-        })
-        .catch((e) =>  {
-            
-            alert("Couldn't add event, sorry")
-
-    })
+        addEventToApi(event)
+            .then(event => {
+                this.context.addEvent(fromApi(event))
+                this.props.history.push(`/dashboard`)
+            })
+            .catch((e) =>  {
+                alert("Couldn't add event, sorry")
+            })
     }
 
     formSubmitted = e => { 
@@ -71,13 +45,12 @@ export default class AddEventGreet extends React.Component {
         const start_time = moment(`${dateStr} ${startingtime}`, "YYYY-MM-DD HH:mm");
         const end_time = moment(`${dateStr} ${endingtime}`, "YYYY-MM-DD HH:mm");
 
-        //this works for now but must change to reflect the user
         const owner_id = this.context.currentUser.id;
 
         const calendar_id = this.context.currentCalendar.id;
 
         const inviteIds = Array.from(e.currentTarget.eventParticipants.options)
-        .filter(o => o.selected).map(o => Number(o.value))
+            .filter(o => o.selected).map(o => Number(o.value))
 
 
         const event = {
@@ -90,66 +63,50 @@ export default class AddEventGreet extends React.Component {
           calendar_id,
           inviteIds
         }
-
-        
-        
         this.addEvent(event)
       }
 
 
 
     render() {
-
         const memberList = this.context.members;
-        
-
         return(
             <div className='AddEventGreet, greetgroup'>
-                    <div className='item'>
-                        <h2>Add an Event</h2>
-                    </div>
-                    
-                    <div className='item'>
-                        <form className='add-event-form' onSubmit={this.formSubmitted} 
-                        // onClick={this.addMembers}
-                        >
+                <div className='item'>
+                    <h2>Add an Event</h2>
+                </div>
                 
-                            <div>
-                                <label htmlFor="eventName">Event Name</label>
-                                <input type="text" name='eventName' id='eventName' placeholder='Event Name' />
-                            </div>
-                            <div>
-                                <label htmlFor="eventDate">Date</label>
-                                <input type="date" name='eventDate' id='eventDate'  />
-                            </div>
-                            <div>
-                                <label htmlFor="eventStartTime">Start Time</label>
-                                <input type="time" name='eventStartTime' id='eventStartTime' />
-                                <label htmlFor="eventEndTime">End Time</label>
-                                <input type="time" name='eventEndTime' id='eventEndTime' />
-                            </div>
-                            <div>
-                                
-                                    <label htmlFor="eventParticipants">Event Participants:</label>
-                                    <br></br>
-                                    <select name="eventParticipants" id="eventParticipants"  multiple>
-                                        
-                                        {memberList.map(member =>
-                                            <option key={member.id} value={member.id}>{member.name}</option>
-                                        )}
-                                    
-                                    </select> 
-                                    
-                                
-                                        
-                            </div>
+                <div className='item'>
+                    <form className='add-event-form' onSubmit={this.formSubmitted} >
+            
+                        <div>
+                            <label htmlFor="eventName">Event Name</label>
+                            <input type="text" name='eventName' id='eventName' placeholder='Event Name' />
+                        </div>
+                        <div>
+                            <label htmlFor="eventDate">Date</label>
+                            <input type="date" name='eventDate' id='eventDate'  />
+                        </div>
+                        <div>
+                            <label htmlFor="eventStartTime">Start Time</label>
+                            <input type="time" name='eventStartTime' id='eventStartTime' />
+                            <label htmlFor="eventEndTime">End Time</label>
+                            <input type="time" name='eventEndTime' id='eventEndTime' />
+                        </div>
+                        <div>
+                            <label htmlFor="eventParticipants">Event Participants:</label>
+                            <br></br>
+                            <select name="eventParticipants" id="eventParticipants"  multiple>
+                                {memberList.map(member =>
+                                    <option key={member.id} value={member.id}>{member.name}</option>
+                                )}
+                            </select>          
+                        </div>
 
-                            <button className='addbtn' type='submit'>Schedule Event</button>
-                        </form>
-                    </div>
-                    
+                        <button className='addbtn' type='submit'>Schedule Event</button>
+                    </form>
+                </div>     
             </div>
-        )
-        
+        )  
     }
 }

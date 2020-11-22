@@ -6,19 +6,18 @@ export default class DashboardNav extends React.Component {
     render() {
         return(
             <div className='DashboardNav, group'>
-                    <div className='item addMemberBtn navbtndiv'>
+                <div className='item addMemberBtn navbtndiv'>
                     <Link to='/addmember'><button className='navbtn'>Add Team Member</button></Link>
-                    </div>
+                </div>
+                
+                <div className='item'>
+                    <h1>EasyCal</h1>
+                </div>
+                <div className='item navbtndiv'>
                     
-                    <div className='item'>
-                        <h1>EasyCal</h1>
-                    </div>
-                    <div className='item navbtndiv'>
-                        
-                        <Link to={`/account`} ><button className='navbtn'>Account</button></Link>
-                    </div>
+                    <Link to={`/account`} ><button className='navbtn'>Account</button></Link>
+                </div>
             </div>
-        )
-        
+        )  
     }
 }

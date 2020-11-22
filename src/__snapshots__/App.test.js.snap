@@ -86,7 +86,7 @@ exports[`App component renders the UI as expected 1`] = `
           className="item"
         >
           <img
-            alt="An easycal calendar that reads 'Welcome, John Doe' and 'your business calendar'"
+            alt="An easycal calendar that reads \\"Welcome, John Doe\\" and \\"your business calendar\\""
             className="landing-img"
             src="calendar-screen.png"
           />

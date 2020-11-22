@@ -29,7 +29,7 @@ export default class ChangePassword extends React.Component {
         const id = this.context.currentUser.id
         updatePassword(updatedFields, id)
             .then(this.props.history.push(`/account`))
-        .catch(() => alert("Couldn't add member, sorry"))      
+        .catch(() => alert(`Couldn't add member, sorry`))      
     }
 
 
@@ -45,34 +45,32 @@ export default class ChangePassword extends React.Component {
         
         if(password1 !== password2) {
             return alert('Please make sure passwords match.')
-        }
-        
+        } 
         this.changeMember(updatedFields)
-      }
+    }
     
     render() {
         return(
             <div className='changepassword, greetgroup'>
-                    <div className='item'>
-                        <h2>Change Your Password</h2>
-                    </div>
-                    
-                    <div className='item'>
-                        <form className='change-password-form' onSubmit={this.formSubmitted}>
-                            
-                            <div>
-                                <label htmlFor="newpassword">New Password</label>
-                                <input type="password" name='newpassword' id='newpassword' />
-                            </div>
-                            <div>
-                                <label htmlFor="newpasswordagain">Confirm Password</label>
-                                <input type="password" name='newpassword2' id='newpassword2' />
-                            </div>
+                <div className='item'>
+                    <h2>Change Your Password</h2>
+                </div>
+                
+                <div className='item'>
+                    <form className='change-password-form' onSubmit={this.formSubmitted}>
+                        
+                        <div>
+                            <label htmlFor='newpassword'>New Password</label>
+                            <input type='password' name='newpassword' id='newpassword' />
+                        </div>
+                        <div>
+                            <label htmlFor='newpasswordagain'>Confirm Password</label>
+                            <input type='password' name='newpassword2' id='newpassword2' />
+                        </div>
 
-                            <button type='submit'>Change Password</button>
-                        </form>
-                    </div>
-                    
+                        <button type='submit'>Change Password</button>
+                    </form>
+                </div>     
             </div>
         )
         

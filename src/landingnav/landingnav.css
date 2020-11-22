@@ -1,38 +1,37 @@
 .LandingNav {
-    background-color: blue;
-    color: white;
+  background-color: blue;
+  color: white;
 }
 
 .group {
-    background-color: blue;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 0px;
-    justify-content: space-between;
-    text-align: center;
-   }
+  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0px;
+  justify-content: space-between;
+  text-align: center;
+}
 
 .signupbtn {
   display: none;
 }
    
-   @media all and (min-width: 800px) {
-     .wrapper {
-       width: 80%;
-       margin: auto;
-     }
-   
-     .group {
-       flex-direction: row;
-     }
+@media all and (min-width: 800px) {
+  .wrapper {
+    width: 80%;
+    margin: auto;
+  }
 
-     .signupbtn {
-       display: inline;
-     }
-   }
+  .group {
+    flex-direction: row;
+  }
+
+  .signupbtn {
+    display: inline;
+  }
+}
    
-   .item {
-     flex: 1;
-     margin: 10px;
-     
-   }
+.item {
+  flex: 1;
+  margin: 10px;
+}

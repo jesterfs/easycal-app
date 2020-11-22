@@ -1,0 +1,96 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EditEventGreet component renders the UI as expected 1`] = `
+<div
+  className="AddEventGreet, greetgroup"
+>
+  <div
+    className="item"
+  >
+    <h2>
+      Edit The Event
+    </h2>
+  </div>
+  <div
+    className="item"
+  >
+    <form
+      className="add-event-form"
+      onSubmit={[Function]}
+    >
+      <div>
+        <label
+          htmlFor="eventName"
+        >
+          Event Name
+        </label>
+        <input
+          defaultValue={null}
+          id="eventName"
+          name="eventName"
+          placeholder={null}
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="eventDate"
+        >
+          Date
+        </label>
+        <input
+          defaultValue={null}
+          id="eventDate"
+          name="eventDate"
+          required={true}
+          type="date"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="eventStartTime"
+        >
+          Start Time
+        </label>
+        <input
+          defaultValue={null}
+          id="eventStartTime"
+          name="eventStartTime"
+          required={true}
+          type="time"
+        />
+        <label
+          htmlFor="eventEndTime"
+        >
+          End Time
+        </label>
+        <input
+          defaultValue={null}
+          id="eventEndTime"
+          name="eventEndTime"
+          required={true}
+          type="time"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="eventParticipants"
+        >
+          Event Participants:
+        </label>
+        <br />
+        <select
+          id="eventParticipants"
+          multiple={true}
+          name="eventParticipants"
+        />
+      </div>
+      <button
+        type="submit"
+      >
+        Save Event
+      </button>
+    </form>
+  </div>
+</div>
+`;
