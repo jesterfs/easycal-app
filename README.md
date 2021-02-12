@@ -4,6 +4,8 @@ Front End Technology Used: React.js, JavaScript, Html, CSS
 
 Live App: https://easycal-react.jesterfs.vercel.app/
 
+Front End Repo: https://github.com/jesterfs/easycal-app
+
 Back End Repo: https://github.com/jesterfs/easycal-api
 
 Summary: EasyCal is an office scheduling software that lets users create multiple calendars for their team members based on any number of specifications, from department to small projects to the corporate level.
